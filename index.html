@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<title>Cloud Computing Exam Portal - Ôn Thi Điện Toán Đám Mây</title>
+<title>Cloud Exam Portal V3 Ultra - @mrfice5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #0f172a 50%, #030712 100%);
+  --bg-gradient: linear-gradient(135deg, #070b14 0%, #0d1629 50%, #030712 100%);
   --surface: #1e293b;
   --surface-sub: #0f172a;
-  --surface-card: #182234;
+  --surface-card: #141f32;
   --border-color: #334155;
   --ink: #f8fafc;
   --ink-muted: #94a3b8;
@@ -48,26 +48,30 @@ body.monochrome {
   --gold: #000000;
 }
 
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 body {
-  margin: 0;
   background: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--ink);
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* MARQUEE BANNER */
+/* MARQUEE BANNER HÀI HƯỚC NHIỀU CÂU TRÊU ĐÙA */
 .ticker-wrap {
   width: 100%;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   border-bottom: 1px solid var(--border-color);
   padding: 8px 0;
   user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  backdrop-filter: blur(8px);
 }
 body.monochrome .ticker-wrap { background: #000; color: #fff; border-bottom: 2px solid #000; }
 .ticker-move {
@@ -78,8 +82,8 @@ body.monochrome .ticker-wrap { background: #000; color: #fff; border-bottom: 2px
 .ticker-move:hover { animation-play-state: paused; }
 .ticker-item {
   display: inline-block;
-  padding: 0 30px;
-  font-size: 0.92rem;
+  padding: 0 25px;
+  font-size: 0.9rem;
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -90,34 +94,33 @@ body.monochrome .ticker-wrap { background: #000; color: #fff; border-bottom: 2px
 }
 
 .app {
-  max-width: 1060px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 20px 16px 80px;
+  padding: 16px 14px 100px;
 }
 
-/* HEADER TOOLBAR */
+/* TOOLBAR */
 .toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 .brand-title {
-  margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 800;
   display: flex;
   align-items: center;
 }
 .badge-portal {
   background: linear-gradient(135deg, #0284c7, #38bdf8);
-  color: #000;
+  color: #030712;
   font-weight: 900;
   font-size: 0.75rem;
-  padding: 3px 9px;
+  padding: 2px 8px;
   border-radius: 999px;
   margin-left: 8px;
 }
@@ -127,7 +130,7 @@ body.monochrome .badge-portal { background: #000; color: #fff; }
 button, select {
   font: inherit;
   border-radius: var(--radius-md);
-  padding: 10px 16px;
+  padding: 8px 14px;
   border: 1px solid var(--border-color);
   background: var(--surface);
   color: var(--ink);
@@ -146,30 +149,39 @@ button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
   font-weight: 800;
   box-shadow: 0 4px 14px var(--accent-glow);
 }
+.btn-calc {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border-color: #10b981;
+}
 .btn-tip {
   background: rgba(245, 158, 11, 0.15);
   color: #f59e0b;
   border-color: rgba(245, 158, 11, 0.4);
 }
-body.monochrome button { border: 2px solid #000; background: #fff; }
+body.monochrome button { border: 2px solid #000; background: #fff; color: #000; }
 body.monochrome .btn-primary { background: #000; color: #fff; }
 
-/* NAV TABS */
+/* TABS */
 .nav-tabs {
   display: flex;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
+.nav-tabs::-webkit-scrollbar { display: none; }
 .tab-btn {
   background: transparent;
   border: 1px solid transparent;
   color: var(--ink-muted);
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: var(--radius-md);
   font-weight: 800;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 .tab-btn.active {
   background: var(--surface-card);
@@ -183,46 +195,25 @@ body.monochrome .tab-btn.active { background: #000; color: #fff; border-color: #
   background: var(--surface-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: clamp(20px, 4vw, 32px);
-  margin-bottom: 28px;
-  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
+  padding: clamp(16px, 3.5vw, 26px);
+  margin-bottom: 22px;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.35);
 }
 body.monochrome .panel { border: 2px solid #000; }
 
 .panel-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  margin-top: 0;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
-/* DYNAMIC MATH GENERATOR UI */
-.math-control-bar {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: center;
-  background: var(--surface-sub);
-  padding: 14px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  margin-bottom: 20px;
-}
-.math-prompt-box {
-  background: var(--surface-sub);
-  border-left: 4px solid var(--accent);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 16px 20px;
-  font-size: 1.05rem;
-  margin-bottom: 20px;
-  line-height: 1.7;
-}
+/* CARDS */
 .step-card {
   background: var(--surface);
   border: 1px solid var(--border-color);
@@ -230,405 +221,1528 @@ body.monochrome .panel { border: 2px solid #000; }
   padding: 16px;
   margin-bottom: 14px;
 }
+body.monochrome .step-card { border: 1.5px solid #000; background: #fff; }
+
 .step-title {
   font-weight: 800;
   color: var(--accent);
   margin-bottom: 8px;
+  font-size: 1rem;
 }
 body.monochrome .step-title { color: #000; }
-.step-solution {
-  background: rgba(15, 23, 42, 0.6);
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.95rem;
-  border-left: 3px solid var(--green);
-  margin-top: 10px;
-  color: #86efac;
-}
-body.monochrome .step-solution { background: #f4f4f5; color: #000; border-color: #000; }
 
-/* FLASHCARD & RECALL */
-.fc-card {
-  background: var(--surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  margin-bottom: 18px;
-}
-.fc-question {
-  font-size: 1.1rem;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-.fc-subq {
-  color: var(--ink-muted);
-  font-size: 0.95rem;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
 .fc-textarea {
   width: 100%;
-  min-height: 90px;
+  min-height: 80px;
   background: var(--surface-sub);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   color: var(--ink);
   font-family: inherit;
   font-size: 0.95rem;
   resize: vertical;
-  margin-bottom: 10px;
+  margin-top: 6px;
+  margin-bottom: 8px;
 }
 .fc-textarea:focus { outline: none; border-color: var(--accent); }
-body.monochrome .fc-textarea { background: #fff; border-color: #000; }
+body.monochrome .fc-textarea { background: #fff; border-color: #000; color: #000; }
 
-.key-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+.step-solution {
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  border-left: 4px solid var(--green);
+  margin-top: 10px;
+  line-height: 1.6;
 }
-.key-tag {
-  background: rgba(56, 189, 248, 0.15);
-  color: var(--accent);
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-body.monochrome .key-tag { background: #e4e4e7; color: #000; }
+body.monochrome .step-solution { background: #f4f4f5; color: #000; border-color: #000; }
 
-/* CHEATSHEET TABLE */
-.cheat-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 14px;
-}
-.cheat-table th, .cheat-table td {
+/* CHECKER RESULT BOXES */
+.check-result-box {
+  border-radius: 8px;
   padding: 12px 14px;
-  border: 1px solid var(--border-color);
-  text-align: left;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
-.cheat-table th { background: var(--surface-sub); font-weight: 800; color: var(--accent); }
-body.monochrome .cheat-table th { color: #000; background: #e4e4e7; }
-.cheat-table tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+.check-result-box.good { background: var(--green-soft); border: 1px solid var(--green); color: #86efac; }
+.check-result-box.warn { background: var(--warn-soft); border: 1px solid var(--warn); color: #fde047; }
+.check-result-box.bad { background: var(--red-soft); border: 1px solid var(--red); color: #fca5a5; }
+.check-result-box.empty { background: rgba(148, 163, 184, 0.1); border: 1px dashed var(--ink-muted); color: var(--ink-muted); }
+body.monochrome .check-result-box { background: #fff; border: 1.5px solid #000; color: #000; }
 
-/* MOCK EXAM VIEW */
-.exam-header {
-  border-bottom: 1px dashed var(--border-color);
-  padding-bottom: 16px;
-  margin-bottom: 24px;
+/* DASHBOARD THỐNG KÊ SAU KHI NỘP BÀI */
+.score-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.stat-box {
+  background: var(--surface-sub);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 6px;
   text-align: center;
 }
+body.monochrome .stat-box { border: 1.5px solid #000; background: #fff; }
+.stat-box .val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.stat-box .lbl {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
 
-.hidden { display: none !important; }
+/* MINI CALCULATOR FLOATING */
+.calc-wrapper {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 270px;
+  background: #0f172a;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+}
+body.monochrome .calc-wrapper { background: #fff; border: 2px solid #000; }
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+  cursor: move;
+}
+body.monochrome .calc-header { color: #000; }
+.calc-screen {
+  width: 100%;
+  height: 38px;
+  background: #020617;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: #38bdf8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  text-align: right;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  outline: none;
+}
+body.monochrome .calc-screen { background: #fff; color: #000; border-color: #000; }
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+.calc-btn {
+  padding: 8px 2px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--surface);
+  text-align: center;
+}
+.calc-btn.op { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+.calc-btn.eq { background: var(--green); color: #000; border-color: var(--green); grid-column: span 2; }
+.calc-btn.clear { background: var(--red); color: #fff; border-color: var(--red); }
+body.monochrome .calc-btn { border: 1px solid #000; background: #fff; color: #000; }
 
 /* MODAL */
 .modal-overlay {
-  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(6px); display: flex; justify-content: center; align-items: center; z-index: 100; padding: 16px;
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px); display: flex; justify-content: center; align-items: center; z-index: 1000; padding: 14px;
 }
 .modal-box {
-  background: var(--surface); border: 1px solid var(--border-color); padding: 32px 24px;
+  background: var(--surface); border: 1px solid var(--border-color); padding: 26px 20px;
   border-radius: 16px; max-width: 500px; width: 100%; text-align: center;
 }
 body.monochrome .modal-box { border: 2px solid #000; background: #fff; }
 
+.hidden { display: none !important; }
+
+/* FOOTER BRAND */
 footer.app-footer {
-  margin-top: 60px; border-top: 1px dashed var(--border-color); padding-top: 24px;
-  text-align: center; font-size: 0.95rem; color: var(--ink-muted);
+  margin-top: 40px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
 }
-footer.app-footer a { color: var(--accent); font-weight: 800; }
-body.monochrome footer.app-footer a { color: #000; }
+footer.app-footer b { color: var(--accent); font-weight: 800; }
+body.monochrome footer.app-footer b { color: #000; }
 
 @media (max-width: 640px) {
-  .app { padding: 12px 10px 60px; }
-  .math-control-bar { flex-direction: column; align-items: stretch; }
-  .math-control-bar select, .math-control-bar button { width: 100%; }
+  .app { padding: 10px 8px 80px; }
+  .calc-wrapper { width: 240px; right: 10px; bottom: 10px; }
+  .tool-actions { width: 100%; }
+  .tool-actions button { flex: 1; padding: 8px 4px; font-size: 0.82rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- BANNER HÀI HƯỚC CHẠY CHỮ ĐỘC QUYỀN -->
 <div class="ticker-wrap">
   <div class="ticker-move" id="tickerMove">
-    <span class="ticker-item">🚀 ĐIỆN TOÁN ĐÁM MÂY - CAO THẮNG EXAM PORTAL</span>
-    <span class="ticker-item">💡 CÂU 1 (3Đ): MÔ HÌNH DỊCH VỤ & TRIỂN KHAI</span>
-    <span class="ticker-item">🌐 CÂU 2 (3Đ): MẠNG TRUY NHẬP & AN TOÀN LƯU TRỮ</span>
-    <span class="ticker-item">⚡ CÂU 3 (4Đ): 4 Ý TÍNH TOÁN - TRỌN VẸN 4 ĐIỂM</span>
-    <span class="ticker-item">🎯 AMDAHL: SPEEDUP = 1 / (S + P/N)</span>
-    <span class="ticker-item">💾 VM TỐI ĐA: NHỚ TRỪ RAM NỀN RỒI MỚI CHIA</span>
-    <span class="ticker-item">🔒 MÃ HÓA KHÉP KÍN: DATA-AT-REST + DATA-IN-TRANSIT</span>
+    <span class="ticker-item">🏃 NƯỚC ĐẾN CHÂN MỚI NHẢY? NƯỚC ĐẾN CỔ CÒN CHƯA THÈM BƠI!</span>
+    <span class="ticker-item">💡 HÃY CHỌN TOÀN C NẾU BẠN CHƯA ÔN GÌ!</span>
+    <span class="ticker-item">💸 CÒN TIỀN LÀ CÒN ĐÓNG TIỀN HỌC LẠI ĐƯỢC - HỌC KỲ SAU GẶP LẠI THẦY!</span>
+    <span class="ticker-item">🔥 TAM TAI KHÔNG BẰNG ĐỀ THI ĐIỆN TOÁN ĐÁM MÂY</span>
+    <span class="ticker-item">☕ RỚT MÔN LÀ DO TÂM LINH, TUYỆT ĐỐI KHÔNG PHẢI DO LƯỜI HỌC!</span>
+    <span class="ticker-item">🎯 AMDAHL: SPEEDUP = 1 / (S + P/N) - ĐỪNG CÓ LẤY N CHIA P NHA CÁC THÁNH</span>
+    <span class="ticker-item">💾 TÍNH VM TỐI ĐA: BƯỚC ĐẦU TIÊN LÀ TRỪ RAM NỀN - QUÊN LÀ BAY 1 ĐIỂM!</span>
+    <span class="ticker-item">🚀 HỌC TÀI THI PHẬN - ÔN FULL CODE NÀY THÌ 8+ TRONG TẦM TAY CÙNG @MRFICE5</span>
+    <!-- Loop -->
+    <span class="ticker-item">🏃 NƯỚC ĐẾN CHÂN MỚI NHẢY? NƯỚC ĐẾN CỔ CÒN CHƯA THÈM BƠI!</span>
+    <span class="ticker-item">💡 HÃY CHỌN TOÀN C NẾU BẠN CHƯA ÔN GÌ!</span>
   </div>
 </div>
 
 <div class="app">
   <header class="toolbar">
     <div class="brand-title">
-      <span>Cloud Exam Lab</span>
-      <span class="badge-portal">ĐỀ CƯƠNG & ĐỀ MẪU</span>
+      <span>Cloud Exam Ultra</span>
+      <span class="badge-portal">V3 PRO</span>
     </div>
     <div class="tool-actions">
-      <button class="btn-tip" id="secretTipBtn" type="button">✨ Mẹo Nhớ & Bẫy Thi</button>
-      <button id="themeToggle" type="button">Chuyển: Trắng / Đen</button>
-      <button id="printBtn" type="button">In / Lưu PDF</button>
+      <button class="btn-calc" id="toggleCalcBtn" type="button">🧮 Máy Tính</button>
+      <button class="btn-tip" id="secretTipBtn" type="button">✨ Mẹo 10 Điểm</button>
+      <button id="themeToggle" type="button">Trắng / Đen</button>
+      <button id="printBtn" type="button">In / PDF</button>
     </div>
   </header>
 
+  <!-- NAVIGATION TABS -->
   <nav class="nav-tabs">
-    <button class="tab-btn active" data-tab="tab-math">🧮 1. Luyện Tính Toán (Sinh Đề Mới)</button>
-    <button class="tab-btn" data-tab="tab-flashcard">📝 2. Luyện Lý Thuyết (Tự Viết Đáp Án)</button>
-    <button class="tab-btn" data-tab="tab-mock">🎯 3. Làm Thử Đề Thi Mẫu Chuẩn</button>
-    <button class="tab-btn" data-tab="tab-cheatsheet">📚 4. Sổ Tay Mẹo & Rubric Điểm</button>
+    <button class="tab-btn active" data-tab="tab-mock">🎯 1. PHÒNG THI THỬ (3 CÂU - 10Đ)</button>
+    <button class="tab-btn" data-tab="tab-theory">📖 2. NGÂN HÀNG LÝ THUYẾT (32 CÂU FULL)</button>
+    <button class="tab-btn" data-tab="tab-math">🧮 3. BÀI TẬP TÍNH TOÁN (16 BÀI FULL)</button>
+    <button class="tab-btn" data-tab="tab-cheatsheet">📚 4. BẢNG MẸO & RUBRIC PHẢN XẠ</button>
   </nav>
 
-  <!-- TAB 1: BÀI TẬP TÍNH TOÁN CÓ SINH ĐỀ TỰ ĐỘNG -->
-  <section class="panel" id="tab-math">
+  <!-- ==================== TAB 1: PHÒNG THI THỬ CHUẨN ĐỀ THẬT ==================== -->
+  <section class="panel" id="tab-mock">
     <div class="panel-title">
-      <span>Bộ Tạo Đề Tính Toán Tự Động (16 Dạng Bài Tập 4 Điểm)</span>
-      <span style="font-size:0.85rem; color:var(--gold); font-weight:700;">★ Tự động đổi số & tính đáp án chi tiết</span>
+      <div>
+        <span>Phòng Thi Thử Đám Mây (Chuẩn 10 Điểm)</span>
+        <div style="font-size:0.82rem; color:var(--gold); font-weight:700; margin-top:2px;">
+          Tự động bốc: 1 câu Dạng 1 (3đ) + 1 câu Dạng 2 (3đ) + 1 câu Dạng 3 (4đ đổi số ngẫu nhiên)
+        </div>
+      </div>
+      <div>
+        <button class="btn-primary" id="btnRollNewExam" type="button">🎲 Bốc Đề Thi Mới</button>
+      </div>
     </div>
 
-    <div class="math-control-bar">
-      <label for="mathTypeSelect" style="font-weight:800; font-size:0.9rem;">Chọn bài toán:</label>
-      <select id="mathTypeSelect" style="flex:1;">
-        <option value="3.1">Bài 3.1: Tính chi phí dịch vụ đám mây (VM, Disk, Data Transfer)</option>
-        <option value="3.2">Bài 3.2: So sánh chi phí 2 phương án thuê dịch vụ</option>
+    <!-- KHUNG ĐỒNG HỒ & TRẠNG THÁI -->
+    <div style="background:var(--surface-sub); border:1px solid var(--border-color); border-radius:10px; padding:10px 16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <div style="font-weight:800; font-size:1rem;" id="mockExamCode">MÃ ĐỀ: CLOUD-EXAM-01</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:1.25rem; font-weight:800; color:var(--accent);" id="mockTimer">60:00</div>
+      <div>
+        <button class="btn-primary" id="btnSubmitMockExam" style="padding:6px 16px;">NỘP BÀI & CHẤM ĐIỂM</button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD KẾT QUẢ SAU KHI NỘP -->
+    <div id="mockScoreDashboard" class="hidden">
+      <div class="score-dashboard">
+        <div class="stat-box">
+          <div class="val" id="resTotal" style="color:var(--accent);">10.0</div>
+          <div class="lbl">Điểm Tối Đa</div>
+        </div>
+        <div class="stat-box">
+          <div class="val" id="resScore" style="color:var(--green);">0.0</div>
+          <div class="lbl">Điểm Đạt Được</div>
+        </div>
+        <div class="stat-box">
+          <div class="val" id="resCorrect" style="color:var(--green);">0</div>
+          <div class="lbl">Ý Đúng</div>
+        </div>
+        <div class="stat-box">
+          <div class="val" id="resPartial" style="color:var(--warn);">0</div>
+          <div class="lbl">Gần Đúng</div>
+        </div>
+        <div class="stat-box">
+          <div class="val" id="resEmpty" style="color:var(--red);">0</div>
+          <div class="lbl">Chưa Làm</div>
+        </div>
+      </div>
+      <div id="mockFunnyVerdict" style="text-align:center; font-weight:800; font-size:1.05rem; margin-bottom:16px; color:var(--gold);"></div>
+    </div>
+
+    <div id="mockExamContainer"></div>
+  </section>
+
+  <!-- ==================== TAB 2: NGÂN HÀNG 32 CÂU LÝ THUYẾT FULL ==================== -->
+  <section class="panel hidden" id="tab-theory">
+    <div class="panel-title">
+      <span>Ngân Hàng 32 Câu Lý Thuyết Vận Dụng (P2)</span>
+      <span style="font-size:0.8rem; color:var(--ink-muted);">Check ngữ nghĩa cả câu & độ tương đồng chuẩn</span>
+    </div>
+
+    <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+      <button class="btn-primary fc-filter-btn" data-filter="all">Tất Cả 32 Câu</button>
+      <button class="fc-filter-btn" data-filter="c1">Dạng 1 (16 Câu - C1, C2)</button>
+      <button class="fc-filter-btn" data-filter="c2">Dạng 2 (16 Câu - C3, C4)</button>
+    </div>
+
+    <div id="theoryQuestionsList"></div>
+  </section>
+
+  <!-- ==================== TAB 3: BÀI TẬP TÍNH TOÁN 16 BÀI FULL ==================== -->
+  <section class="panel hidden" id="tab-math">
+    <div class="panel-title">
+      <span>Ngân Hàng 16 Bài Toán Đám Mây (Dạng 3 - 4 Điểm)</span>
+      <span style="font-size:0.8rem; color:var(--gold); font-weight:700;">Hỗ trợ sinh số ngẫu nhiên & số gốc đề cương</span>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
+      <select id="mathSelectTopic" style="flex:1; min-width:260px;">
+        <!-- Đầy đủ 16 bài toán theo file P2 -->
+        <option value="3.1">Bài 3.1: Tính chi phí dịch vụ đám mây (VM, Lưu trữ, Mạng)</option>
+        <option value="3.2">Bài 3.2: So sánh chi phí hai phương án A và B</option>
         <option value="3.3">Bài 3.3: Tính chi phí máy ảo theo giờ & lưu trữ tháng</option>
-        <option value="3.4">Bài 3.4: So sánh tự đầu tư máy chủ (On-Prem) vs Thuê Cloud</option>
-        <option value="3.5">Bài 3.5: Định luật Amdahl (Tốc độ tăng tốc & thời gian tiết kiệm)</option>
-        <option value="3.6">Bài 3.6: Xác định số máy ảo (VM) tối đa theo RAM & vCPU</option>
-        <option value="3.7">Bài 3.7: Cấp phát tài nguyên máy ảo & tìm điểm thắt cổ chai</option>
-        <option value="3.8">Bài 3.8: Năng suất xử lý song song & thời gian tiết kiệm</option>
-        <option value="3.9">Bài 3.9: Dự báo dung lượng lưu trữ tăng trưởng & ngưỡng 80%</option>
-        <option value="3.10">Bài 3.10: Thời gian truyền file qua mạng (GB sang Mbit)</option>
-        <option value="3.11">Bài 3.11: Tính dung lượng lưu trữ còn lại cho các phòng ban</option>
+        <option value="3.4">Bài 3.4: So sánh tự đầu tư máy chủ (On-Prem) vs Thuê Cloud 12 tháng</option>
+        <option value="3.5">Bài 3.5: Tính thời gian xử lý song song (Định luật Amdahl)</option>
+        <option value="3.6">Bài 3.6: Xác định số máy ảo tối đa theo RAM và vCPU</option>
+        <option value="3.7">Bài 3.7: Cấp phát tài nguyên máy ảo & tìm nút thắt cổ chai</option>
+        <option value="3.8">Bài 3.8: Tính thời gian xử lý theo năng suất (4 máy chủ)</option>
+        <option value="3.9">Bài 3.9: Dự báo dung lượng lưu trữ tăng trưởng 20% & ngưỡng 80%</option>
+        <option value="3.10">Bài 3.10: Tính thời gian truyền dữ liệu (Đổi GB sang Mbit)</option>
+        <option value="3.11">Bài 3.11: Tính dung lượng lưu trữ còn lại cho 5 phòng ban</option>
         <option value="3.12">Bài 3.12: Thời gian truyền file với tốc độ thực tế (Mbps)</option>
-        <option value="3.13">Bài 3.13: Điểm rủi ro (R = P × I) trước & sau kiểm soát</option>
+        <option value="3.13">Bài 3.13: Tính điểm rủi ro (R = P × I) trước & sau kiểm soát</option>
         <option value="3.14">Bài 3.14: Đánh giá mốc RPO & thời hạn khôi phục RTO</option>
-        <option value="3.15">Bài 3.15: Dung lượng bản sao lưu Full + Incremental (tăng dần)</option>
-        <option value="3.16">Bài 3.16: Tỷ lệ phần trăm giảm số lần đăng nhập thất bại</option>
+        <option value="3.15">Bài 3.15: Tính dung lượng lưu trữ bản sao lưu Full + Incremental</option>
+        <option value="3.16">Bài 3.16: Tính mức giảm và tỷ lệ giảm số lần đăng nhập thất bại</option>
       </select>
-      <button class="btn-primary" id="btnGenNewMath" type="button">🎲 Đổi Số / Sinh Đề Mới</button>
-      <button id="btnResetDefaultMath" type="button">Gốc Đề Cương</button>
+      <button class="btn-primary" id="btnGenSingleMath" type="button">🎲 Sinh Số Mới</button>
+      <button id="btnResetDefaultMath" type="button">Số Gốc Đề Cương</button>
     </div>
 
-    <div class="math-prompt-box" id="mathPromptContent"></div>
-
-    <div id="mathStepsContainer"></div>
+    <div class="step-card" id="singleMathBox"></div>
   </section>
 
-  <!-- TAB 2: FLASHCARD LÝ THUYẾT VẬN DỤNG TỰ VIẾT -->
-  <section class="panel hidden" id="tab-flashcard">
-    <div class="panel-title">
-      <span>Luyện Lý Thuyết Vận Dụng (Active Recall & Keyword Checklist)</span>
-      <span style="font-size:0.85rem; color:var(--ink-muted); font-weight:600;">Gõ đáp án vào ô để tự kiểm tra mức độ nhớ</span>
-    </div>
-
-    <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
-      <button class="btn-primary filter-fc-btn" data-fc="all">Tất cả câu</button>
-      <button class="filter-fc-btn" data-fc="c1">Câu 1: Tổng quan & Kiến trúc (Chương 1-2)</button>
-      <button class="filter-fc-btn" data-fc="c2">Câu 2: Mạng & Bảo mật (Chương 3-4)</button>
-    </div>
-
-    <div id="flashcardList"></div>
-  </section>
-
-  <!-- TAB 3: ĐỀ THI MẪU LÀM THỬ CHUẨN 10 ĐIỂM -->
-  <section class="panel hidden" id="tab-mock">
-    <div class="exam-header">
-      <div style="font-size:0.85rem; font-weight:800; letter-spacing:1.5px; color:var(--ink-muted); text-transform:uppercase;">TRƯỜNG CAO ĐẲNG KỸ THUẬT CAO THẮNG - KHOA CNTT</div>
-      <h2 style="font-family:'Space Grotesk',sans-serif; margin:8px 0; font-size:1.6rem;">ĐỀ THI MẪU MÔN: ĐIỆN TOÁN ĐÁM MÂY</h2>
-      <div style="font-weight:700; color:var(--accent);">Thời gian làm bài: 60 phút | Thang điểm: 10.0</div>
-    </div>
-
-    <!-- CÂU 1 -->
-    <div class="step-card">
-      <div class="step-title">CÂU 1: (SO 2.3) (3.0 Điểm) - Tổng quan mô hình dịch vụ & triển khai</div>
-      <p>Một hệ thống đám mây phải lựa chọn mô hình triển khai và mô hình dịch vụ cho nhiều nhóm nhu cầu khác nhau.</p>
-      
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">1. Phân tích mối quan hệ giữa mô hình triển khai và mô hình dịch vụ (1.0đ)</div>
-        <textarea class="fc-textarea" placeholder="Nhập câu trả lời của bạn..."></textarea>
-      </div>
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">2. Lựa chọn mô hình cho nhu cầu cần kiểm soát hạ tầng cao (1.0đ)</div>
-        <textarea class="fc-textarea" placeholder="Nhập câu trả lời của bạn..."></textarea>
-      </div>
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">3. Lựa chọn mô hình cho nhu cầu cần sử dụng phần mềm hoàn chỉnh (1.0đ)</div>
-        <textarea class="fc-textarea" placeholder="Nhập câu trả lời của bạn..."></textarea>
-      </div>
-      <button type="button" class="toggle-answer-btn">👁️ Xem Đáp Án Chuẩn Đề Mẫu</button>
-      <div class="step-solution hidden">
-        <b>Đáp án chuẩn:</b><br>
-        1. Triển khai: Xác định hạ tầng tổ chức thế nào và ai dùng (Public, Private, Hybrid). Dịch vụ: Mức độ nhà cung cấp quản lý và khách hàng dùng loại tài nguyên nào (IaaS, PaaS, SaaS). Hai mô hình kết hợp song song, không loại trừ nhau (VD: IaaS trên Public Cloud).<br>
-        2. Triển khai: Chọn Private Cloud (toàn quyền kiểm soát). Dịch vụ: Chọn IaaS (quản lý máy chủ ảo, HĐH, phần mềm).<br>
-        3. Dịch vụ: Chọn SaaS vì nhà cung cấp quản lý toàn bộ hệ thống, người dùng chỉ dùng qua mạng không phải cài đặt/quản trị.
-      </div>
-    </div>
-
-    <!-- CÂU 2 -->
-    <div class="step-card">
-      <div class="step-title">CÂU 2: (SO 2.3) (3.0 Điểm) - Mạng truy nhập & Hiệu năng dịch vụ</div>
-      <p>Một doanh nghiệp có nhân viên làm việc tại nhiều địa điểm và cần truy cập dữ liệu, ứng dụng trên đám mây qua mạng.</p>
-      
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">1. Trình bày vai trò của mạng truy nhập (1.0đ)</div>
-        <textarea class="fc-textarea" placeholder="Nhập câu trả lời của bạn..."></textarea>
-      </div>
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">2. Phân tích các yêu cầu về kết nối đối với người dùng (1.0đ)</div>
-        <textarea class="fc-textarea" placeholder="Nhập câu trả lời của bạn..."></textarea>
-      </div>
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">3. Giải thích ảnh hưởng của mạng truy nhập đến hiệu năng và khả năng sử dụng dịch vụ (1.0đ)</div>
-        <textarea class="fc-textarea" placeholder="Nhập câu trả lời của bạn..."></textarea>
-      </div>
-      <button type="button" class="toggle-answer-btn">👁️ Xem Đáp Án Chuẩn Đề Mẫu</button>
-      <div class="step-solution hidden">
-        <b>Đáp án chuẩn:</b><br>
-        1. Là cầu nối bắt buộc để người dùng tiếp cận tài nguyên đám mây, gửi yêu cầu và nhận dữ liệu.<br>
-        2. Kết nối ổn định, đủ băng thông cho số lượng user và loại dữ liệu; phù hợp vị trí địa lý; duy trì liên tục khi tải cao.<br>
-        3. Mạng chậm/chập chờn làm ứng dụng tê liệt dù máy chủ đám mây vẫn chạy tốt; đánh giá hiệu năng phải xem xét cả máy chủ lẫn mạng.
-      </div>
-    </div>
-
-    <!-- CÂU 3 -->
-    <div class="step-card">
-      <div class="step-title">CÂU 3: (SO 6.2) (4.0 Điểm) - Bài toán tính chi phí đám mây</div>
-      <p>Một dịch vụ sử dụng 2 máy ảo, mỗi máy chạy 730 giờ/tháng với đơn giá 0,10 USD/giờ; lưu trữ 400 GB giá 0,05 USD/GB-tháng; truyền dữ liệu ra ngoài 100 GB giá 0,08 USD/GB.</p>
-      
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">1. Tính tổng số giờ sử dụng máy ảo trong tháng (1.0đ):</div>
-        <input type="text" class="fc-textarea" style="min-height:auto; height:42px;" placeholder="Nhập kết quả...">
-      </div>
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">2. Tính chi phí sử dụng máy ảo trong tháng (1.0đ):</div>
-        <input type="text" class="fc-textarea" style="min-height:auto; height:42px;" placeholder="Nhập kết quả...">
-      </div>
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">3. Tính riêng chi phí lưu trữ và chi phí truyền dữ liệu (1.0đ):</div>
-        <input type="text" class="fc-textarea" style="min-height:auto; height:42px;" placeholder="Nhập kết quả...">
-      </div>
-      <div style="margin-bottom:12px;">
-        <div class="fc-subq">4. Tính tổng chi phí dịch vụ trong tháng (1.0đ):</div>
-        <input type="text" class="fc-textarea" style="min-height:auto; height:42px;" placeholder="Nhập kết quả...">
-      </div>
-      <button type="button" class="toggle-answer-btn">👁️ Xem Lời Giải Chi Tiết</button>
-      <div class="step-solution hidden">
-        1. Tổng giờ máy = 2 × 730 = <b>1.460 giờ</b> (hoặc giờ-máy)<br>
-        2. Chi phí máy ảo = 1.460 × 0,10 = <b>146 USD</b><br>
-        3. Chi phí lưu trữ = 400 × 0,05 = <b>20 USD</b> | Chi phí truyền dữ liệu = 100 × 0,08 = <b>8 USD</b><br>
-        4. Tổng chi phí tháng = 146 + 20 + 8 = <b>174 USD/tháng</b>
-      </div>
-    </div>
-  </section>
-
-  <!-- TAB 4: SỔ TAY MẸO NHỚ & RUBRIC BẢNG SO SÁNH -->
+  <!-- ==================== TAB 4: BẢNG MẸO & PHẢN XẠ NHANH ==================== -->
   <section class="panel hidden" id="tab-cheatsheet">
     <div class="panel-title">
-      <span>Sổ Tay Mẹo Làm Bài & Phản Xạ Đề Thi</span>
+      <span>Bảng Phản Xạ Đề Thi & Bẫy Cần Tránh</span>
     </div>
 
-    <table class="cheat-table">
-      <thead>
-        <tr>
-          <th>Tình huống trong đề</th>
-          <th>Từ khóa nhận diện</th>
-          <th>Mô hình / Công thức chuẩn</th>
-          <th>Bẫy cần tránh</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Doanh nghiệp nhỏ, ít vốn, cần nhanh</td>
-          <td>Không mua phần cứng, đưa vào chạy ngay</td>
-          <td><b>Public Cloud</b> (Hạ tầng nhà cung cấp)</td>
-          <td>Tránh nhầm sang Private Cloud</td>
-        </tr>
-        <tr>
-          <td>Ngân hàng, tài chính, kiểm soát cao</td>
-          <td>Dữ liệu nhạy cảm, mật độ bảo mật cao</td>
-          <td><b>Private Cloud + IaaS</b> (tự quản HĐH)</td>
-          <td>Đừng chọn SaaS nếu yêu cầu quản trị máy chủ</td>
-        </tr>
-        <tr>
-          <td>Ứng dụng văn phòng, email, chia sẻ file</td>
-          <td>Chỉ dùng trên web, không muốn cài đặt</td>
-          <td><b>SaaS</b> (Nhà cung cấp quản lý toàn bộ)</td>
-          <td>Không chọn IaaS/PaaS</td>
-        </tr>
-        <tr>
-          <td>Lập trình viên chỉ tập trung viết mã nguồn</td>
-          <td>Tập trung code, không lo máy chủ/HĐH</td>
-          <td><b>PaaS</b></td>
-          <td>Tránh nhầm IaaS</td>
-        </tr>
-        <tr>
-          <td>So sánh Song song vs Phân tán</td>
-          <td>Tăng tốc vs Trải rộng nút mạng</td>
-          <td><b>Song song:</b> Giảm thời gian thực hiện.<br><b>Phân tán:</b> Loại bỏ điểm lỗi đơn, scale-out.</td>
-          <td>Phải nêu rõ hệ thống đám mây kết hợp cả 2</td>
-        </tr>
-        <tr>
-          <td>Tính số VM tối đa theo tài nguyên</td>
-          <td>RAM hệ thống nền, vCPU</td>
-          <td>1. RAM còn = RAM tổng - RAM nền<br>2. min(VM theo RAM, VM theo CPU)</td>
-          <td>Quên trừ RAM nền là mất trọn 1 điểm</td>
-        </tr>
-        <tr>
-          <td>Định luật Amdahl</td>
-          <td>Tỷ lệ song song P, số bộ xử lý N</td>
-          <td>Speedup = 1 / ( (1 - P) + P/N )<br>Tiết kiệm = Thời gian gốc - Mới</td>
-          <td>Nhớ quy ước: S = 1 - P (ví dụ P=75% -> S=0.25)</td>
-        </tr>
-        <tr>
-          <td>Thời gian truyền file mạng</td>
-          <td>Dung lượng GB, băng thông Mbps</td>
-          <td>1 GB = 8 Gbit = 8.000 Mbit (nếu quy ước 10^9)<br>T = Dung lượng / (Băng thông × Hiệu suất)</td>
-          <td>Quên nhân 8 (nhầm lẫn giữa Byte và Bit)</td>
-        </tr>
-        <tr>
-          <td>Mã hóa dữ liệu đám mây</td>
-          <td>Data-at-rest & Data-in-transit</td>
-          <td>At-rest: Ổ đĩa, Database, Backup.<br>In-transit: TLS/HTTPS, VPN trên mạng.</td>
-          <td>Bắt buộc phải kết hợp cả 2 tạo vòng khép kín</td>
-        </tr>
-        <tr>
-          <td>Chỉ số RPO và RTO</td>
-          <td>Thời điểm backup và thời điểm sự cố</td>
-          <td>RPO: Khoảng dữ liệu mất mát chấp nhận.<br>RTO: Thời hạn tối đa để hệ thống chạy lại.</td>
-          <td>Khoảng cách backup tới sự cố > RPO -> KHÔNG ĐẠT</td>
-        </tr>
-      </tbody>
-    </table>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin-top:8px;">
+        <thead>
+          <tr style="background:var(--surface-sub); color:var(--accent); text-align:left;">
+            <th style="padding:10px; border:1px solid var(--border-color);">Tình huống đề thi</th>
+            <th style="padding:10px; border:1px solid var(--border-color);">Chọn ngay mô hình / công thức</th>
+            <th style="padding:10px; border:1px solid var(--border-color);">Bẫy mất điểm của sinh viên</th>
+          </tr>
+        </thead>
+        <tbody style="font-size:0.92rem;">
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Doanh nghiệp mới mở, ít vốn, cần website chạy ngay[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">Public Cloud[cite: 2, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">Chọn Private Cloud (tốn chi phí mua phần cứng ban đầu)[cite: 2, 3]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Dữ liệu nội bộ mật, ngân hàng, kiểm soát toàn quyền hạ tầng[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">Private Cloud + IaaS</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">Chọn SaaS là sai vì SaaS không cho can thiệp máy chủ/HĐH[cite: 1, 2]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Chỉ cần soạn thảo văn bản online, gửi mail, chia sẻ file[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">SaaS[cite: 1, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">Không chọn IaaS/PaaS nếu đề ghi không cần cài đặt phần mềm[cite: 3]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Lập trình viên chỉ tập trung viết code/ứng dụng[cite: 2, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">PaaS[cite: 2, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">Tránh nhầm sang IaaS (IaaS phải tự cấu hình máy ảo, HĐH)[cite: 2, 3]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">So sánh Song song vs Phân tán[cite: 2, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">Song song: Tăng tốc thời gian.<br>Phân tán: Trải rộng nút mạng, tránh điểm lỗi đơn.[cite: 2, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">Bắt buộc phải có câu: "Đám mây kết hợp cả hai mô hình này"[cite: 2, 3]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Tính số VM tối đa khi biết RAM và CPU[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">1. RAM còn = RAM tổng - RAM nền<br>2. min(VM theo RAM, VM theo CPU)[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">BẪY LỚN NHẤT: Quên trừ RAM của hệ thống nền[cite: 3]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Định luật Amdahl[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">Speedup = 1 / ( (1 - P) + P/N )[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">S = 1 - P. Nếu P = 75% thì S = 0.25 (không nhầm S và P)[cite: 3]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Thời gian truyền dữ liệu qua mạng[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">GB × 8 = Gbit × 1000 = Mbit<br>T = Dung lượng / (Băng thông × Hiệu suất)[cite: 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">Quên nhân 8 (nhầm lẫn giữa Byte và Bit)[cite: 3]</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid var(--border-color);">Bảo vệ dữ liệu toàn diện[cite: 2, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color); color:#4ade80; font-weight:800;">Data-at-rest (ổ đĩa) + Data-in-transit (mạng)[cite: 2, 3]</td>
+            <td style="padding:10px; border:1px solid var(--border-color);">Chỉ kể một trạng thái bị mất một nửa số điểm[cite: 2, 3]</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
+  <!-- MÁY TÍNH MINI FLOATING -->
+  <div class="calc-wrapper" id="miniCalculator">
+    <div class="calc-header" id="calcHeader">
+      <span>🧮 MÁY TÍNH NHANH</span>
+      <span style="cursor:pointer;" id="closeCalcBtn">✖</span>
+    </div>
+    <input type="text" class="calc-screen" id="calcScreen" readonly value="0">
+    <div class="calc-grid">
+      <button type="button" class="calc-btn clear" onclick="calcClear()">C</button>
+      <button type="button" class="calc-btn op" onclick="calcInput('(')">(</button>
+      <button type="button" class="calc-btn op" onclick="calcInput(')')">)</button>
+      <button type="button" class="calc-btn op" onclick="calcInput('/')">÷</button>
+
+      <button type="button" class="calc-btn" onclick="calcInput('7')">7</button>
+      <button type="button" class="calc-btn" onclick="calcInput('8')">8</button>
+      <button type="button" class="calc-btn" onclick="calcInput('9')">9</button>
+      <button type="button" class="calc-btn op" onclick="calcInput('*')">×</button>
+
+      <button type="button" class="calc-btn" onclick="calcInput('4')">4</button>
+      <button type="button" class="calc-btn" onclick="calcInput('5')">5</button>
+      <button type="button" class="calc-btn" onclick="calcInput('6')">6</button>
+      <button type="button" class="calc-btn op" onclick="calcInput('-')">-</button>
+
+      <button type="button" class="calc-btn" onclick="calcInput('1')">1</button>
+      <button type="button" class="calc-btn" onclick="calcInput('2')">2</button>
+      <button type="button" class="calc-btn" onclick="calcInput('3')">3</button>
+      <button type="button" class="calc-btn op" onclick="calcInput('+')">+</button>
+
+      <button type="button" class="calc-btn" onclick="calcInput('0')">0</button>
+      <button type="button" class="calc-btn" onclick="calcInput('.')">.</button>
+      <button type="button" class="calc-btn eq" onclick="calcCalculate()">=</button>
+    </div>
+  </div>
+
   <footer class="app-footer">
-    Cloud Computing Interactive Portal. Developed for Cao Thang Technical College IT Students.
+    Cloud Computing Examination Portal • Developed and maintained by <b>@mrfice5</b>. All rights reserved.[cite: 4]
   </footer>
 </div>
 
-<!-- POPUP MẸO THI -->
+<!-- POPUP MẸO NHỚ -->
 <div class="modal-overlay hidden" id="tipModal">
   <div class="modal-box">
-    <div style="font-size: 2.8rem;">💡</div>
-    <h3 style="font-family:'Space Grotesk',sans-serif; margin:12px 0; font-size:1.5rem; color:var(--accent);">CHIẾN THUẬT LÀM BÀI 10 ĐIỂM</h3>
-    <p style="text-align:left; color:var(--ink-muted); font-size:0.92rem; line-height:1.7;">
-      1. <b>Làm Câu 3 trước (4 điểm tính toán):</b> Câu 3 là câu dễ lấy trọn 4.0 điểm nhất. Ghi rõ từng dòng: Tên đại lượng, công thức, phép thay số, đơn vị (USD, GB, giờ, lần)[cite: 1, 3].<br>
-      2. <b>Hai câu lý thuyết vận dụng (Câu 1 & 2 - 6 điểm):</b> Trả lời theo gạch đầu dòng ngắn gọn[cite: 1, 3]. Phải có các từ khóa: <i>Đặc quyền tối thiểu, CapEx sang OpEx, Hypervisor độc lập, mở rộng linh hoạt, điểm lỗi đơn</i>.<br>
-      3. <b>Đơn vị tính toán:</b> Luôn cẩn thận quy ước $1\text{ GB} = 8\text{ Gbit} = 8.000\text{ Mbit}$ hay $8.192\text{ Mbit}$ theo đề bài cho.
-    </p>
-    <button class="btn-primary" id="closeTipBtn" style="width: 100%; padding: 12px; margin-top: 10px;">Đã hiểu & Vào luyện ngay</button>
+    <div style="font-size: 2.8rem;">🧙‍♂️</div>
+    <h3 style="font-family:'Space Grotesk',sans-serif; margin:8px 0; font-size:1.5rem; color:var(--accent);">BÍ KÍP 10 ĐIỂM TỪ @MRFICE5</h3>
+    <div style="text-align:left; color:var(--ink-muted); font-size:0.92rem; line-height:1.7; margin-bottom:16px;">
+      1. <b>Chiến thuật làm bài:</b> Làm Câu 3 (4 điểm bài toán) trước vì tính toán ăn điểm tuyệt đối rất nhanh[cite: 3]. Nhớ ghi đủ: Công thức $\rightarrow$ Thế số $\rightarrow$ Kết quả kèm đơn vị[cite: 1, 3].<br>
+      2. <b>Hai câu tự luận (6 điểm):</b> Viết đầy đủ câu, gạch đầu dòng 3 ý rõ ràng[cite: 1, 3]. Dùng các thuật ngữ: <i>đặc quyền tối thiểu, CapEx sang OpEx, ảo hóa Hypervisor, điểm lỗi đơn</i>[cite: 2, 3].<br>
+      3. <b>Máy tính mini:</b> Bật máy tính góc phải màn hình để nhẩm số nhanh mà không cần mở app khác!
+    </div>
+    <button class="btn-primary" id="closeTipBtn" style="width: 100%; padding: 10px; border-radius: 8px;">ĐÃ RÕ, VÀO THI NGAY!</button>
   </div>
 </div>
 
 <script>
 const $ = id => document.getElementById(id);
 
-// ==================== CHUYỂN TABS ====================
+// ==================== THUẬT TOÁN KIỂM TRA CẢ CÂU (SENTENCE SIMILARITY & COVERAGE) ====================
+// Chuẩn hóa câu tiếng Việt: xóa dấu, ký tự đặc biệt, chuyển chữ thường
+function cleanSentence(str) {
+  return String(str || '')
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[đĐ]/g, "d")
+    .replace(/[^\w\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// Tách từ có ý nghĩa (bỏ hư từ quá phổ biến)
+function getMeaningfulWords(normStr) {
+  const stopWords = new Set(["va", "la", "cac", "nhung", "thi", "de", "khi", "cho", "cua", "trong", "tren", "nhu", "mot", "duoc", "hay", "neu"]);
+  return normStr.split(' ').filter(w => w.length > 1 && !stopWords.has(w));
+}
+
+// Thuật toán kiểm tra độ phủ nghĩa cả câu (Clause/Semantic Target Coverage)
+function evaluateSentenceMatch(userText, sampleText, keyConcepts) {
+  if (!userText || !userText.trim()) {
+    return { status: "empty", score: 0, text: "Chưa làm / Bỏ trống" };
+  }
+
+  const userClean = cleanSentence(userText);
+  const sampleClean = cleanSentence(sampleText);
+
+  // 1. Tính Jaccard Similarity giữa câu người dùng và câu mẫu
+  const userWords = new Set(getMeaningfulWords(userClean));
+  const sampleWords = new Set(getMeaningfulWords(sampleClean));
+
+  let intersection = 0;
+  userWords.forEach(w => {
+    if (sampleWords.has(w)) intersection++;
+  });
+  const union = new Set([...userWords, ...sampleWords]).size;
+  const jaccard = union > 0 ? (intersection / union) : 0;
+
+  // 2. Kiểm tra độ phủ của các mệnh đề cốt lõi trong câu
+  let conceptHits = 0;
+  keyConcepts.forEach(conceptVariants => {
+    const hit = conceptVariants.some(variant => userClean.includes(cleanSentence(variant)));
+    if (hit) conceptHits++;
+  });
+  const conceptRatio = conceptHits / keyConcepts.length;
+
+  // 3. Tính điểm tổng hợp (Trọng số 70% độ phủ mệnh đề cốt lõi + 30% cấu trúc câu tương đồng)
+  const finalRatio = (conceptRatio * 0.7) + (Math.min(jaccard * 1.8, 1.0) * 0.3);
+
+  if (finalRatio >= 0.65) {
+    return { status: "good", score: 1.0, text: "ĐÚNG (Đạt trọn vẹn ý nghĩa câu chuẩn)" };
+  } else if (finalRatio >= 0.35) {
+    return { status: "warn", score: 0.5, text: "GẦN ĐÚNG / CẦN BỔ SUNG (Đã có ý nhưng câu còn thiếu vế quan trọng)" };
+  } else {
+    return { status: "bad", score: 0.0, text: "CHƯA ĐÚNG (Ý câu chưa diễn đạt đúng bản chất theo đáp án)" };
+  }
+}
+
+// ==================== TOÀN BỘ 32 CÂU TÌNH HUỐNG LÝ THUYẾT (FILE P2) ====================
+const DB_THEORY_ALL = [
+  // DẠNG 1: CHƯƠNG 1 & CHƯƠNG 2 (16 CÂU)
+  {
+    id: "1.1", part: "c1", title: "Câu 1.1: Phân tích mô hình triển khai & dịch vụ",
+    desc: "Một hệ thống đám mây phải lựa chọn mô hình triển khai và mô hình dịch vụ cho nhiều nhóm nhu cầu khác nhau.[cite: 1, 3]",
+    subqs: [
+      { q: "1. Phân tích mối quan hệ giữa mô hình triển khai và mô hình dịch vụ (1.0đ):", sample: "Mô hình triển khai xác định hạ tầng được tổ chức thế nào và ai có quyền sử dụng (Public, Private, Hybrid). Mô hình dịch vụ xác định mức độ nhà cung cấp quản lý và khách hàng dùng loại tài nguyên nào (IaaS, PaaS, SaaS). Hai mô hình kết hợp song song, lựa chọn mô hình này không loại trừ mô hình kia.[cite: 1, 3]", concepts: [["trien khai", "public", "private", "hybrid", "ha tang ai dung"], ["dich vu", "iaas", "paas", "saas", "muc do quan ly"], ["song song", "khong loai tru", "ket hop"]] },
+      { q: "2. Lựa chọn mô hình cho nhu cầu cần kiểm soát hạ tầng cao (1.0đ):", sample: "Mô hình triển khai chọn Private Cloud (hoặc Hybrid Cloud) để toàn quyền quản lý dữ liệu và hạ tầng. Mô hình dịch vụ chọn IaaS để trực tiếp quản lý máy chủ ảo, hệ điều hành và phần mềm bên trên.[cite: 1, 3]", concepts: [["private cloud", "dam may rieng", "hybrid cloud"], ["iaas", "quan ly may chu ao", "he dieu hanh"]] },
+      { q: "3. Lựa chọn mô hình cho nhu cầu cần sử dụng phần mềm hoàn chỉnh (1.0đ):", sample: "Chọn SaaS. Lý do: Nhà cung cấp quản lý toàn bộ hệ thống từ hạ tầng đến phần mềm; người dùng chỉ cần sử dụng ứng dụng hoàn chỉnh qua mạng mà không phải cài đặt hay quản trị máy chủ.[cite: 1, 3]", concepts: [["saas", "phan mem nhu mot dich vu"], ["nha cung cap quan ly toan bo", "dung truc tiep qua mang", "khong can cai dat"]] }
+    ]
+  },
+  {
+    id: "1.2", part: "c1", title: "Câu 1.2: Triển khai website công cộng, dữ liệu nội bộ & tải theo mùa",
+    desc: "Một hệ thống đám mây phải cung cấp website công cộng, lưu trữ dữ liệu nội bộ và một ứng dụng có tải thay đổi theo mùa.[cite: 3]",
+    subqs: [
+      { q: "1. Lựa chọn mô hình triển khai phù hợp cho website công cộng (1.0đ):", sample: "Website công cộng chọn Public Cloud kết hợp IaaS (tự quản HĐH) hoặc PaaS (tập trung viết code web) vì triển khai nhanh, linh hoạt mở rộng phục vụ số đông.[cite: 3]", concepts: [["public cloud", "dam may cong cong"], ["trien khai nhanh", "linh hoat mo rong", "iaas hoac paas"]] },
+      { q: "2. Lựa chọn mô hình triển khai và dịch vụ phù hợp cho dữ liệu nội bộ (1.0đ):", sample: "Dữ liệu nội bộ chọn Private Cloud (hoặc Hybrid Cloud) để kiểm soát an toàn dữ liệu nhạy cảm; mô hình dịch vụ chọn theo mức quản trị mong muốn (thường là IaaS).[cite: 3]", concepts: [["private cloud", "dam may rieng", "hybrid cloud"], ["du lieu noi bo", "nhay cam", "iaas"]] },
+      { q: "3. Phân tích cách lựa chọn mô hình cho ứng dụng có tải thay đổi theo mùa (1.0đ):", sample: "Ứng dụng tải theo mùa chọn Public Cloud hoặc Hybrid Cloud nhờ khả năng co giãn, mở rộng hoặc thu hẹp tài nguyên linh hoạt theo lưu lượng thực tế.[cite: 3]", concepts: [["public cloud", "hybrid cloud"], ["tai theo mua", "co gian linh hoat", "mo rong thu hep"]] }
+    ]
+  },
+  {
+    id: "1.3", part: "c1", title: "Câu 1.3: Mở rộng, truy nhập ổn định và phù hợp ngân sách",
+    desc: "Một doanh nghiệp lựa chọn giải pháp đám mây để triển khai CNTT mới bảo đảm mở rộng, truy nhập ổn định và ngân sách.[cite: 3]",
+    subqs: [
+      { q: "1. Xác định các yếu tố về tài nguyên và khả năng mở rộng cần xem xét (1.0đ):", sample: "Khảo sát CPU, RAM, lưu trữ, mạng; đánh giá mức sử dụng hiện tại và dự kiến tăng trưởng để co giãn tài nguyên khi nhu cầu thay đổi.[cite: 3]", concepts: [["cpu ram luu tru mang", "khao sat tai nguyen"], ["du kien tang truong", "co gian", "kha nang mo rong"]] },
+      { q: "2. Phân tích các yếu tố về mô hình triển khai, mô hình dịch vụ và quản trị (1.0đ):", sample: "Dựa vào mức kiểm soát dữ liệu chọn Public/Private/Hybrid; dựa vào năng lực quản trị chọn IaaS/PaaS/SaaS; tính đến nhân sự và tích hợp hệ thống cũ.[cite: 3]", concepts: [["public private hybrid", "muc kiem soat du lieu"], ["iaas paas saas", "nang luc quan tri", "he thong cu"]] },
+      { q: "3. Đề xuất các yếu tố về truy nhập, bảo mật, độ tin cậy và chi phí (1.0đ):", sample: "Mạng ổn định, đủ băng thông; mã hóa, phân quyền, sao lưu dữ liệu; tính tổng chi phí (tài nguyên, lưu trữ, mạng, bản quyền, vận hành).[cite: 3]", concepts: [["mang on dinh", "du bang thong"], ["ma hoa phan quyen sao luu"], ["tong chi phi", "van hanh", "ban quyen"]] }
+    ]
+  },
+  {
+    id: "1.4", part: "c1", title: "Câu 1.4: Trường cao đẳng đưa email, tài liệu và LMS lên mây",
+    desc: "Một trường cao đẳng muốn đưa email, lưu trữ tài liệu và phần mềm quản lý học tập lên đám mây.[cite: 3]",
+    subqs: [
+      { q: "1. Xác định các đặc điểm điện toán đám mây thể hiện trong tình huống (1.0đ):", sample: "Truy cập qua mạng; Cung cấp theo nhu cầu (On-demand); Tài nguyên dùng chung; Khả năng co giãn/mở rộng linh hoạt.[cite: 2, 3]", concepts: [["truy cap qua mang"], ["theo nhu cau", "on demand"], ["tai nguyen dung chung", "co gian"]] },
+      { q: "2. Chọn mô hình dịch vụ phù hợp cho từng nhu cầu và giải thích (1.0đ):", sample: "Email và phần mềm quản lý học tập chọn SaaS (dùng sẵn qua web); nếu tự phát triển ứng dụng chọn PaaS; nếu cần dựng máy chủ riêng chọn IaaS.[cite: 3]", concepts: [["email lms saas", "dung san qua web"], ["tu phat trien paas", "may chu rieng iaas"]] },
+      { q: "3. Nêu hai lợi ích và một vấn đề cần xem xét khi triển khai (1.0đ):", sample: "Lợi ích: Giảm chi phí đầu tư ban đầu, triển khai nhanh. Vấn đề xem xét: Bảo mật dữ liệu sinh viên/nhà trường và độ ổn định của đường truyền mạng.[cite: 3]", concepts: [["giam chi phi ban dau", "trien khai nhanh"], ["bao mat du lieu", "duong truyen mang"]] }
+    ]
+  },
+  {
+    id: "1.5", part: "c1", title: "Câu 1.5: Doanh nghiệp nhỏ không đầu tư máy chủ tại chỗ",
+    desc: "Một doanh nghiệp nhỏ không muốn đầu tư máy chủ tại chỗ, cần triển khai nhanh website và có lượng truy cập thay đổi.[cite: 3]",
+    subqs: [
+      { q: "1. Chọn mô hình triển khai phù hợp và giải thích (1.0đ):", sample: "Chọn Public Cloud vì đưa vào hoạt động nhanh, không tốn chi phí mua máy chủ ban đầu, dễ mở rộng linh hoạt theo lượng truy cập.[cite: 3]", concepts: [["public cloud", "dam may cong cong"], ["hoat dong nhanh", "khong ton chi phi mua may chu", "mo rong"]] },
+      { q: "2. Chọn mô hình dịch vụ nếu muốn tự quản HĐH; nêu lựa chọn khác nếu chỉ tập trung mã nguồn (1.0đ):", sample: "Muốn tự quản lý HĐH chọn IaaS; nếu chỉ tập trung vào mã nguồn ứng dụng thì chọn PaaS.[cite: 3]", concepts: [["tu quan he dieu hanh iaas"], ["tap trung ma nguon paas", "viet code paas"]] },
+      { q: "3. Giải thích cách mở rộng tài nguyên khi lượng truy cập tăng (1.0đ):", sample: "Sử dụng tính năng co giãn tự động (auto-scaling) hoặc nâng cấp cấu hình tài nguyên (scale-up / scale-out) trên đám mây theo thời gian thực.[cite: 3]", concepts: [["auto scaling", "co gian tu dong"], ["scale up scale out", "nang cap cau hinh"]] }
+    ]
+  },
+  {
+    id: "1.6", part: "c1", title: "Câu 1.6: Tổ chức tài chính kiểm soát chặt dữ liệu khách hàng",
+    desc: "Một tổ chức tài chính cần kiểm soát chặt dữ liệu khách hàng nhưng cũng muốn tận dụng tài nguyên công cộng khi tải tăng cao.[cite: 3]",
+    subqs: [
+      { q: "1. Phân tích mô hình triển khai phù hợp (1.0đ):", sample: "Chọn Hybrid Cloud (Đám mây lai) để lưu trữ và xử lý dữ liệu mật ở Private Cloud, đồng thời mở rộng tài nguyên ra Public Cloud khi tải tăng cao.[cite: 3]", concepts: [["hybrid cloud", "dam may lai"], ["private cloud du lieu mat"], ["public cloud tai tang cao"]] },
+      { q: "2. Phân biệt mô hình triển khai với mô hình dịch vụ trong tình huống (1.0đ):", sample: "Triển khai là cách tổ chức và phân quyền sử dụng hạ tầng (Public/Private/Hybrid). Dịch vụ là mức độ quản lý của nhà cung cấp và loại tài nguyên cấp (IaaS/PaaS/SaaS).[cite: 3]", concepts: [["trien khai to chuc ha tang"], ["dich vu muc do quan ly", "iaas paas saas"]] },
+      { q: "3. Nêu các yếu tố cần đánh giá trước khi lựa chọn (1.0đ):", sample: "Độ nhạy cảm của dữ liệu, quy định bảo mật/pháp lý, khả năng kết nối giữa hai môi trường, chi phí và năng lực quản trị hệ thống.[cite: 3]", concepts: [["do nhay cam du lieu", "phap ly"], ["ket noi hai moi truong", "chi phi quan tri"]] }
+    ]
+  },
+  {
+    id: "1.7", part: "c1", title: "Câu 1.7: Người dùng chỉnh sửa tài liệu trực tuyến & cộng tác",
+    desc: "Người dùng muốn chỉnh sửa văn bản trực tuyến, chia sẻ tài liệu và cộng tác với đồng nghiệp mà không cài đặt phần mềm trên máy tính.[cite: 3]",
+    subqs: [
+      { q: "1. Xác định mô hình dịch vụ phù hợp (1.0đ):", sample: "Chọn SaaS (Phần mềm như một dịch vụ) vì cho phép sử dụng phần mềm hoàn chỉnh trực tuyến qua trình duyệt web mà không cần cài đặt.[cite: 3]", concepts: [["saas", "phan mem nhu mot dich vu"], ["truc tuyen qua trinh duyet", "khong can cai dat"]] },
+      { q: "2. Nêu phần việc do nhà cung cấp quản lý và phần việc người dùng thực hiện (1.0đ):", sample: "Nhà cung cấp quản trị toàn bộ hạ tầng, máy chủ, nền tảng và bảo trì ứng dụng. Người dùng quản lý tài khoản, nội dung dữ liệu tải lên và phân quyền chia sẻ tệp.[cite: 3]", concepts: [["nha cung cap quan tri ha tang ung dung"], ["nguoi dung quan ly tai khoan", "du lieu tai len", "phan quyen chia se"]] },
+      { q: "3. Nêu hai lợi ích và một rủi ro cần kiểm soát (1.0đ):", sample: "Lợi ích: Cộng tác thuận tiện từ xa mọi lúc mọi nơi, không tốn công cài đặt/cập nhật. Rủi ro: Nguy cơ rò rỉ dữ liệu khi chia sẻ nhầm hoặc tài khoản bị xâm nhập.[cite: 3]", concepts: [["cong tac thuan tien", "khong ton cong cai dat"], ["ro ri du lieu", "tai khoan bi xam nhap"]] }
+    ]
+  },
+  {
+    id: "1.8", part: "c1", title: "Câu 1.8: Doanh nghiệp cân nhắc chuyển hệ thống CNTT lên mây",
+    desc: "Một doanh nghiệp đang cân nhắc chuyển hệ thống CNTT lên đám mây nhưng chưa xác định khối lượng tài nguyên, ngân sách và quản trị.[cite: 3]",
+    subqs: [
+      { q: "1. Nêu các thông tin cần khảo sát về tài nguyên và tải công việc (1.0đ):", sample: "Dung lượng CPU, RAM, lưu trữ, băng thông mạng; số lượng người dùng đồng thời; thời điểm tải cao điểm và tốc độ tăng trưởng dự kiến.[cite: 3]", concepts: [["cpu ram luu tru bang thong"], ["so luong nguoi dung dong thoi", "cao diem", "toc do tang truong"]] },
+      { q: "2. Đề xuất tiêu chí lựa chọn mô hình triển khai và mô hình dịch vụ (1.0đ):", sample: "Xét yêu cầu kiểm soát dữ liệu để chọn Public/Private/Hybrid; xét nguồn lực và chuyên môn quản trị để chọn IaaS/PaaS/SaaS.[cite: 3]", concepts: [["yeu cau kiem soat du lieu", "public private hybrid"], ["nguon luc quan tri", "iaas paas saas"]] },
+      { q: "3. Nêu cách đánh giá chi phí và hiệu quả sau khi triển khai (1.0đ):", sample: "Tính toán tổng chi phí (thuê tài nguyên, lưu trữ, truyền dữ liệu, vận hành); theo dõi hiệu năng thực tế và độ sẵn sàng của hệ thống để tối ưu chi phí.[cite: 3]", concepts: [["tong chi phi thue luu tru truyen du lieu"], ["theo doi hieu nang", "do san sang", "toi uu"]] }
+    ]
+  },
+  {
+    id: "1.9", part: "c1", title: "Câu 1.9: Kiến trúc song song & phân tán cho nhiều phòng ban",
+    desc: "Hệ thống cần xử lý đồng thời nhiều yêu cầu và triển khai các thành phần trên nhiều máy chủ cho nhiều phòng ban.[cite: 3]",
+    subqs: [
+      { q: "1. Trình bày vai trò của kiến trúc song song (1.0đ):", sample: "Cho phép chia khối lượng công việc để xử lý đồng thời trên nhiều đơn vị tính toán, rút ngắn thời gian và đáp ứng tốt lượng yêu cầu lớn cùng lúc.[cite: 3]", concepts: [["chia khoi luong cong viec", "xu ly dong thoi"], ["rut ngan thoi gian", "yeu cau lon cung luc"]] },
+      { q: "2. Trình bày vai trò của kiến trúc phân tán (1.0đ):", sample: "Phân bố các thành phần/tài nguyên trên nhiều máy chủ, tránh phụ thuộc vào một máy duy nhất (loại bỏ điểm lỗi đơn) và dễ dàng mở rộng scale-out.[cite: 2, 3]", concepts: [["phan bo nhieu may chu"], ["tranh phu thuoc mot may", "loai bo diem loi don", "scale out"]] },
+      { q: "3. Phối hợp giữa song song và phân tán để nâng cao hiệu năng (1.0đ):", sample: "Phân tán đảm nhận việc trải rộng tài nguyên lên nhiều nút mạng; song song khai thác từng nút để thực thi đồng thời, phối hợp qua cơ chế truyền thông mạng.[cite: 3]", concepts: [["phan tan trai rong tai nguyen"], ["song song thuc thi dong thoi"], ["truyen thong mang", "phoi hop"]] }
+    ]
+  },
+  {
+    id: "1.10", part: "c1", title: "Câu 1.10: Triển khai nhiều máy chủ logic trên ít máy vật lý",
+    desc: "Doanh nghiệp có ít máy chủ vật lý nhưng cần chạy nhiều máy chủ logic và muốn tối ưu tài nguyên, tách biệt dịch vụ.[cite: 3]",
+    subqs: [
+      { q: "1. Giải thích vai trò của công nghệ ảo hóa (1.0đ):", sample: "Tạo các máy ảo logic độc lập chạy trên một máy chủ vật lý; tối ưu hóa hiệu suất sử dụng phần cứng (CPU, RAM, ổ đĩa), tránh lãng phí và tách biệt môi trường dịch vụ.[cite: 3]", concepts: [["tao may ao logic doc lap"], ["toi uu phan cung cpu ram", "tiet kiem", "tach biet moi truong"]] },
+      { q: "2. Đề xuất cách triển khai nhiều máy chủ ảo trên hạ tầng vật lý (1.0đ):", sample: "Cài đặt Hypervisor lên máy chủ vật lý; tạo các VM tương ứng cho từng dịch vụ và phân bổ tài nguyên (CPU, RAM, đĩa, mạng) hợp lý theo nhu cầu thực tế.[cite: 3]", concepts: [["cai dat hypervisor"], ["tao cac vm", "phan bo cpu ram dia mang"]] },
+      { q: "3. Phân tích các nội dung cần quản lý và giám sát trong ảo hóa (1.0đ):", sample: "Quản lý vòng đời VM (khởi tạo, cấu hình, sao lưu và loại bỏ); giám sát mức tải CPU/RAM/ổ đĩa; bảo vệ tài khoản admin Hypervisor và vá lỗi định kỳ.[cite: 3]", concepts: [["vong doi vm", "khoi tao sao luu"], ["giam sat tai cpu ram", "admin hypervisor", "va loi"]] }
+    ]
+  },
+  {
+    id: "1.11", part: "c1", title: "Câu 1.11: Xử lý khối lượng công việc lớn độc lập trên nhiều nút",
+    desc: "Một hệ thống xử lý công việc lớn có thể chia thành nhiều phần độc lập và triển khai trên nhiều nút để tăng năng lực xử lý.[cite: 3]",
+    subqs: [
+      { q: "1. Phân tích cách chia công việc để áp dụng kiến trúc song song (1.0đ):", sample: "Tách công việc thành các phần nhỏ độc lập hoặc ít phụ thuộc nhau, giao cho từng bộ xử lý thực hiện đồng thời để rút ngắn thời gian.[cite: 3]", concepts: [["tach cong viec doc lap", "it phu thuoc"], ["giao cho bo xu ly", "chay dong thoi", "rut ngan thoi gian"]] },
+      { q: "2. Phân tích cách phân bố các nút để áp dụng kiến trúc phân tán (1.0đ):", sample: "Bố trí các đơn vị xử lý trên nhiều máy chủ/nút mạng khác nhau, thiết lập cơ chế mạng để các nút trao đổi dữ liệu và dễ dàng bổ sung nút mới.[cite: 3]", concepts: [["bo tri tren nhieu nut mang", "nhieu may chu"], ["co che mang trao doi", "bo sung nut moi"]] },
+      { q: "3. Đề xuất cách phối hợp và tổng hợp kết quả xử lý (1.0đ):", sample: "Sử dụng cơ chế giao tiếp mạng để gửi công việc đến các nút, các nút chạy đồng thời, sau đó gom và tổng hợp dữ liệu thành kết quả chung hoàn chỉnh.[cite: 3]", concepts: [["giao tiep mang", "gui viec den nut"], ["gom tong hop du lieu", "ket qua chung"]] }
+    ]
+  },
+  {
+    id: "1.12", part: "c1", title: "Câu 1.12: Kiến trúc phân tán & kiến trúc tương tác giữa các dịch vụ",
+    desc: "Một ứng dụng đám mây gồm nhiều thành phần phân tán thường xuyên trao đổi dữ liệu và yêu cầu với nhau.[cite: 3]",
+    subqs: [
+      { q: "1. Giải thích vai trò của kiến trúc phân tán trong tình huống (1.0đ):", sample: "Đặt các thành phần xử lý trên nhiều nút để chia tải, tránh phụ thuộc vào một máy duy nhất và cho phép hệ thống mở rộng linh hoạt bằng cách thêm máy chủ.[cite: 3]", concepts: [["dat tren nhieu nut de chia tai"], ["tranh phu thuoc mot may", "mo rong linh hoat"]] },
+      { q: "2. Phân tích vai trò của kiến trúc tương tác giữa các thành phần (1.0đ):", sample: "Giúp các thành phần trao đổi thông tin, dữ liệu đầu vào và kết quả xử lý qua mạng, đảm bảo các dịch vụ hoạt động thống nhất và hoàn thành đúng nghiệp vụ.[cite: 3]", concepts: [["trao doi thong tin du lieu", "qua mang"], ["thong nhat", "hoan thanh nghiep vu"]] },
+      { q: "3. Giải thích mối quan hệ giữa phân tán và tương tác trong hệ thống (1.0đ):", sample: "Phân tán giải quyết việc tài nguyên nằm ở đâu; tương tác giải quyết việc các tài nguyên đó giao tiếp với nhau thế nào; phân tán càng rộng thì tương tác càng quan trọng.[cite: 3]", concepts: [["phan tan tai nguyen nam o dau"], ["tuong tac giao tiep the nao"], ["phan tan cang rong tuong tac cang quan trong"]] }
+    ]
+  },
+  {
+    id: "1.13", part: "c1", title: "Câu 1.13: Cấp phát CPU, RAM, ổ đĩa và mạng cho các máy ảo",
+    desc: "Một tổ chức triển khai nhiều máy ảo trên máy chủ vật lý và bảo đảm các máy ảo được cấp đủ tài nguyên.[cite: 3]",
+    subqs: [
+      { q: "1. Đề xuất cách phân bổ CPU và bộ nhớ (1.0đ):", sample: "Khảo sát tải của từng VM: cấp nhiều vCPU cho ứng dụng nặng, cấp đủ RAM cho HĐH và ứng dụng tránh tràn RAM; cân đối không để 1 VM chiếm dụng làm nghẽn máy khác.[cite: 3]", concepts: [["khao sat tai tung vm", "vcpu ram"], ["tranh tran ram", "khong de chiem dung het"]] },
+      { q: "2. Đề xuất cách phân bổ lưu trữ và mạng (1.0đ):", sample: "Dung lượng đĩa tính theo dung lượng HĐH, dữ liệu hiện tại cộng mức dự phòng tăng trưởng; mạng phân bổ theo lưu lượng và số lượng kết nối truy cập thực tế.[cite: 3]", concepts: [["dung luong dia hdh du lieu du phong"], ["bang thong mang theo luu luong ket noi"]] },
+      { q: "3. Nêu các nội dung quản lý, giám sát và bảo vệ cần thực hiện (1.0đ):", sample: "Quản lý vòng đời VM và sao lưu định kỳ; giám sát CPU, RAM, mạng để phát hiện quá tải; khóa chặt quyền quản trị Hypervisor và cập nhật bản vá lỗi.[cite: 3]", concepts: [["vong doi vm", "sao luu dinh ky"], ["giam sat cpu ram qua tai"], ["khoa quyen hypervisor", "cap nhat ban va"]] }
+    ]
+  },
+  {
+    id: "1.14", part: "c1", title: "Câu 1.14: Ứng dụng đơn hàng, thanh toán & thông báo phân tán",
+    desc: "Một ứng dụng gồm các dịch vụ đơn hàng, thanh toán và thông báo triển khai trên các máy chủ khác nhau.[cite: 3]",
+    subqs: [
+      { q: "1. Giải thích vì sao hệ thống này sử dụng kiến trúc phân tán (1.0đ):", sample: "Vì các dịch vụ (đơn hàng, thanh toán, thông báo) nằm độc lập trên nhiều máy chủ khác nhau nhưng phối hợp để hoàn thành quy trình nghiệp vụ chung.[cite: 3]", concepts: [["dich vu nam doc lap tren nhieu may chu"], ["phoi hop hoan thanh quy trinh chung"]] },
+      { q: "2. Nêu vai trò của cơ chế tương tác giữa các dịch vụ (1.0đ):", sample: "Cho phép các dịch vụ truyền nhận yêu cầu, gửi dữ liệu thanh toán và trả kết quả để hoàn tất giao dịch thông suốt.[cite: 3]", concepts: [["truyen nhan yeu cau", "du lieu thanh toan"], ["tra ket qua", "hoan tat giao dich"]] },
+      { q: "3. Nêu hai vấn đề cần xử lý để các thành phần phối hợp tin cậy (1.0đ):", sample: "Thống nhất chuẩn giao thức/định dạng dữ liệu (REST API, JSON) và xử lý cơ chế thời gian chờ (timeout), lỗi mạng, kiểm soát không xử lý trùng lặp giao dịch.[cite: 3]", concepts: [["dinh dang du lieu rest api json"], ["xu ly timeout", "loi mang", "khong trung lap"]] }
+    ]
+  },
+  {
+    id: "1.15", part: "c1", title: "Câu 1.15: Tác vụ phân tích dữ liệu độc lập chạy trên nhiều máy",
+    desc: "Một tác vụ phân tích dữ liệu có thể chia thành nhiều phần độc lập và cần hoàn thành nhanh hơn trên nhiều máy chủ.[cite: 3]",
+    subqs: [
+      { q: "1. Đề xuất cách áp dụng kiến trúc song song (1.0đ):", sample: "Chia tác vụ thành các phần nhỏ độc lập, giao cho nhiều bộ xử lý thực thi đồng thời rồi tổng hợp kết quả lại.[cite: 3]", concepts: [["chia tac vu thanh phan nho"], ["nhieu bo xu ly thuc thi dong thoi", "tong hop ket qua"]] },
+      { q: "2. Phân biệt vai trò của song song và phân tán nếu chạy trên nhiều máy chủ (1.0đ):", sample: "Song song tập trung vào việc chạy đồng thời nhiều phần việc để tăng tốc độ xử lý; phân tán tập trung vào việc phân bố tài nguyên trên nhiều nút liên kết qua mạng.[cite: 3]", concepts: [["song song chay dong thoi tang toc"], ["phan tan phan bo tai nguyen qua mang"]] },
+      { q: "3. Nêu yếu tố có thể làm giảm hiệu quả tăng tốc (1.0đ):", sample: "Tác vụ khó chia nhỏ, mất nhiều thời gian truyền thông qua mạng, phân chia tải không đều hoặc khâu tổng hợp kết quả bị thắt cổ chai.[cite: 3]", concepts: [["kho chia nho", "mat thoi gian truyen thong qua mang"], ["phan chia tai khong deu", "tong hop bi nghen"]] }
+    ]
+  },
+  {
+    id: "1.16", part: "c1", title: "Câu 1.16: Máy ảo bị chậm và điều chỉnh tài nguyên Hypervisor",
+    desc: "Một máy chủ vật lý chạy nhiều máy ảo; khi nhu cầu tăng, một số máy ảo bị chậm và quản trị viên cần phân bổ lại tài nguyên.[cite: 3]",
+    subqs: [
+      { q: "1. Nêu các tài nguyên cần kiểm tra trước khi điều chỉnh máy ảo (1.0đ):", sample: "Kiểm tra mức sử dụng CPU, RAM, I/O đĩa cứng và băng thông mạng của cả máy chủ vật lý lẫn từng máy ảo.[cite: 3]", concepts: [["kiem tra cpu ram io dia mang"], ["may chu vat ly va tung may ao"]] },
+      { q: "2. Đề xuất cách theo dõi và phân bổ lại tài nguyên (1.0đ):", sample: "Xem biểu đồ giám sát để tìm tài nguyên thắt cổ chai; nâng vCPU, thêm RAM hoặc nới băng thông cho máy ảo thiếu; không vượt quá ngưỡng máy chủ vật lý.[cite: 3]", concepts: [["bieu do giam sat that co chai"], ["nang vcpu them ram noi mang", "khong vuot nguong vat ly"]] },
+      { q: "3. Nêu các biện pháp duy trì ổn định và an toàn môi trường ảo hóa (1.0đ):", sample: "Bật cảnh báo tự động khi chạm ngưỡng cao, cập nhật bản vá Hypervisor, giới hạn tài khoản quản trị và định kỳ sao lưu cấu hình/dữ liệu máy ảo.[cite: 3]", concepts: [["canh bao tu dong nguong cao"], ["cap nhat hypervisor", "sao luu may ao"]] }
+    ]
+  },
+
+  // DẠNG 2: CHƯƠNG 3 & CHƯƠNG 4 (16 CÂU)
+  {
+    id: "2.1", part: "c2", title: "Câu 2.1: Vai trò mạng truy nhập đối với người dùng từ xa",
+    desc: "Một doanh nghiệp có nhân viên làm việc tại nhiều địa điểm và cần truy cập dữ liệu, ứng dụng trên đám mây qua mạng.[cite: 1, 3]",
+    subqs: [
+      { q: "1. Trình bày vai trò của mạng truy nhập (1.0đ):", sample: "Là cầu nối trực tiếp đưa người dùng/hệ thống tiếp cận tài nguyên đám mây; người dùng bắt buộc phải đi qua mạng truy nhập để gửi yêu cầu và nhận dữ liệu.[cite: 1, 3]", concepts: [["cau noi truc tiep", "thanh phan ket noi"], ["tiep can tai nguyen dam may", "gui yeu cau nhan du lieu"]] },
+      { q: "2. Phân tích các yêu cầu về kết nối đối với người dùng (1.0đ):", sample: "Đảm bảo kết nối ổn định, băng thông đủ đáp ứng số lượng người dùng và loại dữ liệu truyền tải; phù hợp với vị trí địa lý và duy trì được khi tải tăng.[cite: 1, 3]", concepts: [["ket noi on dinh", "du bang thong"], ["vi tri dia ly", "duy tri khi tai tang"]] },
+      { q: "3. Giải thích ảnh hưởng của mạng truy nhập đến hiệu năng dịch vụ (1.0đ):", sample: "Mạng chập chờn hoặc băng thông thấp làm ứng dụng bị chậm, gián đoạn dù máy chủ đám mây vẫn chạy tốt; đánh giá hiệu năng phải xem cả máy chủ lẫn mạng.[cite: 1, 3]", concepts: [["mang chap chon bang thong thap", "ung dung cham"], ["xem xet ca hai", "may chu va mang"]] }
+    ]
+  },
+  {
+    id: "2.2", part: "c2", title: "Câu 2.2: Lưu trữ tài liệu dùng chung tập trung cho nhân viên",
+    desc: "Một doanh nghiệp cần lưu trữ tài liệu dùng chung cho nhiều nhân viên và muốn dữ liệu được tổ chức tập trung.[cite: 3]",
+    subqs: [
+      { q: "1. Lựa chọn loại/mô hình lưu trữ phù hợp (1.0đ):", sample: "Chọn Hệ thống lưu trữ file (File Storage) vì dữ liệu dưới dạng tập tin/thư mục, rất phù hợp và thuận tiện để chia sẻ tài liệu qua mạng cho nhiều người dùng.[cite: 2, 3]", concepts: [["luu tru file", "file storage"], ["dang tap tin thu muc", "chia se qua mang cho nhieu nguoi"]] },
+      { q: "2. Giải thích cách tổ chức dữ liệu (1.0đ):", sample: "Tạo cây thư mục phân cấp rõ ràng theo phòng ban, dự án; phân loại dữ liệu theo mức độ quan trọng để áp dụng chính sách bảo vệ và sao lưu thích hợp.[cite: 3]", concepts: [["cay thu muc phan cap theo phong ban"], ["phan loai quan trong", "chinh sach bao ve sao luu"]] },
+      { q: "3. Đề xuất cách kiểm soát truy cập và quản lý dữ liệu (1.0đ):", sample: "Gom người dùng vào các nhóm chức năng và phân quyền đọc/ghi theo nhóm; rà soát quyền định kỳ, giám sát truy cập và thiết lập lịch sao lưu thường xuyên.[cite: 3]", concepts: [["gom vao nhom", "phan quyen doc ghi theo nhom"], ["ra soat dinh ky", "giam sat", "sao luu"]] }
+    ]
+  },
+  {
+    id: "2.3", part: "c2", title: "Câu 2.3: Tổ chức thư mục & phân quyền phòng ban",
+    desc: "Một doanh nghiệp có nhiều phòng ban và mỗi phòng ban chỉ được truy cập một số thư mục nhất định trên hệ thống lưu trữ.[cite: 3]",
+    subqs: [
+      { q: "1. Đề xuất cách tổ chức thư mục (1.0đ):", sample: "Phân chia thư mục độc lập cho từng phòng ban và tạo thêm thư mục dùng chung (Public) nếu cần trao đổi tài liệu liên phòng ban.[cite: 3]", concepts: [["thu muc doc lap tung phong ban"], ["thu muc dung chung public lien phong ban"]] },
+      { q: "2. Đề xuất cách tổ chức tài khoản/nhóm (1.0đ):", sample: "Tạo nhóm người dùng (Group) theo từng phòng ban và gán nhân viên vào đúng nhóm; cấp quyền cho nhóm thay vì cấp lẻ cho từng cá nhân để dễ quản lý.[cite: 3]", concepts: [["tao group nhom theo phong ban"], ["cap quyen cho nhom thay vi ca nhan"]] },
+      { q: "3. Phân tích nguyên tắc cấp, rà soát và kiểm tra quyền truy cập (1.0đ):", sample: "Cấp quyền theo nguyên tắc đặc quyền tối thiểu (least privilege); rà soát định kỳ thu hồi quyền thừa khi chuyển việc/nghỉ việc; dùng tài khoản đại diện để kiểm thử.[cite: 3]", concepts: [["dac quyen toi thieu", "least privilege"], ["ra soat dinh ky thu hoi quyen"], ["tai khoan dai dien kiem thu"]] }
+    ]
+  },
+  {
+    id: "2.4", part: "c2", title: "Câu 2.4: Phân biệt lưu trữ file dùng chung và lưu trữ ứng dụng",
+    desc: "Một doanh nghiệp có dữ liệu file dùng chung và dữ liệu phục vụ các ứng dụng, cần chọn mô hình lưu trữ tương thích.[cite: 3]",
+    subqs: [
+      { q: "1. Phân tích nhu cầu của dữ liệu file dùng chung (1.0đ):", sample: "Cần cấu trúc cây thư mục phân cấp để người dùng đọc/ghi và chia sẻ tài liệu qua mạng; mô hình phù hợp là Lưu trữ file (File Storage).[cite: 3]", concepts: [["cay thu muc de chia se tai lieu"], ["luu tru file", "file storage"]] },
+      { q: "2. Phân tích nhu cầu của dữ liệu phục vụ ứng dụng (1.0đ):", sample: "Phụ thuộc vào phương thức đọc/ghi và yêu cầu tốc độ I/O cao của ứng dụng; cần mô hình lưu trữ chuyên dụng như Block Storage hoặc Cơ sở dữ liệu.[cite: 3]", concepts: [["yeu cau toc do io cao"], ["block storage", "co so du lieu database"]] },
+      { q: "3. Giải thích vì sao cần chọn theo đặc điểm dữ liệu và nêu tiêu chí (1.0đ):", sample: "Mỗi loại dữ liệu có cách truy cập và hiệu năng khác nhau, dùng chung một loại sẽ gây lãng phí hoặc nghẽn cổ chai; tiêu chí gồm loại dữ liệu, số người dùng, I/O, mở rộng và chi phí.[cite: 3]", concepts: [["dung chung gay lang phi nghen co chai"], ["loai du lieu so nguoi dung io mo rong"]] }
+    ]
+  },
+  {
+    id: "2.5", part: "c2", title: "Câu 2.5: Xử lý sự cố ứng dụng chậm do mạng truy nhập",
+    desc: "Người dùng phản ánh ứng dụng đám mây thường xuyên chậm nhưng máy chủ đám mây vẫn hoạt động bình thường.[cite: 3]",
+    subqs: [
+      { q: "1. Xây dựng hướng kiểm tra mạng truy nhập (1.0đ):", sample: "Không vội can thiệp máy chủ; kiểm tra đường truyền kết nối từ máy người dùng lên đám mây; đo kiểm băng thông, độ trễ (ping), mất gói (packet loss) và dấu hiệu chập chờn.[cite: 3]", concepts: [["kiem tra ket noi client len dam may"], ["do bang thong do tre ping mat goi packet loss"]] },
+      { q: "2. Kiểm tra lưu lượng và số lượng người dùng (1.0đ):", sample: "Giám sát số người dùng đồng thời và lưu lượng mạng tại thời điểm bị chậm; đối chiếu xem thời điểm nghẽn có trùng với giờ cao điểm lưu lượng mạng tăng đột biến hay không.[cite: 3]", concepts: [["so nguoi dung dong thoi", "luu luong mang"], ["doi chieu gio cao diem tang dot bien"]] },
+      { q: "3. Phân biệt sự cố cục bộ với toàn hệ thống và hướng xử lý (1.0đ):", sample: "Nếu chỉ bị ở một địa điểm: Lỗi do đường mạng cục bộ tại điểm đó $\rightarrow$ Xử lý mạng nội bộ; Nếu tất cả nơi đều bị: Lỗi diện rộng hoặc đường truyền vào đám mây $\rightarrow$ Kiểm tra hạ tầng dịch vụ.[cite: 3]", concepts: [["mot diem loi mang cuc bo tai cho"], ["tat ca noi deu bi loi dien rong may chu dam may"]] }
+    ]
+  },
+  {
+    id: "2.6", part: "c2", title: "Câu 2.6: Quản lý và bảo vệ dữ liệu đám mây cho nhiều nhóm",
+    desc: "Doanh nghiệp muốn xây dựng giải pháp tổ chức, quản lý và truy cập dữ liệu trên đám mây cho nhiều nhóm người dùng.[cite: 3]",
+    subqs: [
+      { q: "1. Đề xuất cách phân loại và tổ chức dữ liệu (1.0đ):", sample: "Phân loại dữ liệu theo mức độ nhạy cảm và theo phòng ban; dữ liệu file dùng chung tổ chức theo cây thư mục phân cấp rõ ràng, nhất quán.[cite: 3]", concepts: [["phan loai muc do nhay cam phong ban"], ["cay thu muc phan cap nhat quan"]] },
+      { q: "2. Đề xuất cơ chế tài khoản/nhóm và phân quyền (1.0đ):", sample: "Gom tài khoản theo nhóm chức năng, cấp quyền đọc/ghi trên thư mục cho nhóm; áp dụng nguyên tắc đặc quyền tối thiểu, rà soát thu hồi quyền khi nhân sự thay đổi.[cite: 3]", concepts: [["gom tai khoan theo nhom chuc nang"], ["dac quyen toi thieu", "thu hoi quyen"]] },
+      { q: "3. Nêu yêu cầu về mạng truy nhập, sao lưu và mở rộng (1.0đ):", sample: "Mạng truy nhập phải có băng thông đủ lớn, kết nối liên tục; lên lịch sao lưu định kỳ dữ liệu quan trọng và giám sát dung lượng thường xuyên để chủ động mở rộng.[cite: 3]", concepts: [["mang bang thong du lon ket noi lien tuc"], ["sao luu dinh ky", "giam sat mo rong dung luong"]] }
+    ]
+  },
+  {
+    id: "2.7", part: "c2", title: "Câu 2.7: Mở rộng dung lượng và kiểm soát rủi ro mất dữ liệu",
+    desc: "Dung lượng dữ liệu tăng nhanh; doanh nghiệp muốn mở rộng hệ thống nhưng vẫn hạn chế tối đa nguy cơ mất dữ liệu.[cite: 3]",
+    subqs: [
+      { q: "1. Đề xuất cách đánh giá nhu cầu mở rộng (1.0đ):", sample: "Đo lường dung lượng thực tế và tốc độ tăng trưởng dữ liệu hằng tháng/năm; dự báo thời điểm chạm ngưỡng dung lượng để chủ động nâng cấp trước khi bị đầy.[cite: 3]", concepts: [["do luong dung luong toc do tang truong"], ["du bao cham nguong nang cap truoc"]] },
+      { q: "2. Đề xuất chính sách sao lưu (1.0đ):", sample: "Xác định danh mục dữ liệu trọng yếu; quy định chu kỳ sao lưu (hằng ngày, hằng tuần) phù hợp tần suất thay đổi; lưu bản sao lưu độc lập, tách biệt khỏi vùng dữ liệu chính.[cite: 3]", concepts: [["xac dinh du lieu trong yeu"], ["chu ky sao luu hang ngay hang tuan"], ["luu ban sao tach biet doc lap"]] },
+      { q: "3. Đề xuất phương án khôi phục và cách kiểm tra (1.0đ):", sample: "Xây dựng quy trình khôi phục chi tiết với thứ tự ưu tiên dữ liệu/dịch vụ; định kỳ diễn tập khôi phục thử nghiệm từ file backup để đảm bảo dữ liệu sao lưu còn dùng tốt.[cite: 3]", concepts: [["quy trinh khoi phuc thu tu uu tien"], ["dien tap khoi phuc thu nghiem tu file backup"]] }
+    ]
+  },
+  {
+    id: "2.8", part: "c2", title: "Câu 2.8: Truy cập ổn định đa địa điểm và bảo vệ dữ liệu",
+    desc: "Doanh nghiệp có nhiều người dùng ở các địa điểm khác nhau cần truy cập đám mây ổn định và dữ liệu được an toàn.[cite: 3]",
+    subqs: [
+      { q: "1. Phân tích yêu cầu mạng truy nhập (1.0đ):", sample: "Kết nối mạng ổn định, băng thông tương xứng với lượng người dùng từ nhiều địa điểm; đảm bảo đường truyền không bị nghẽn trong giờ cao điểm truy cập.[cite: 3]", concepts: [["ket noi mang on dinh bang thong tuong xung"], ["khong nghen gio cao diem"]] },
+      { q: "2. Lựa chọn cách tổ chức lưu trữ dữ liệu (1.0đ):", sample: "Dữ liệu văn phòng dùng chung chọn Lưu trữ file, chia thư mục theo phòng ban/dự án; thiết kế cấu trúc lưu trữ có khả năng mở rộng dung lượng linh hoạt.[cite: 3]", concepts: [["luu tru file theo phong ban du an"], ["mo rong dung luong linh hoat"]] },
+      { q: "3. Đề xuất phân quyền, mở rộng và bảo mật (1.0đ):", sample: "Cấp quyền theo nhóm vai trò, rà soát loại bỏ quyền thừa định kỳ; kết hợp phân quyền, mã hóa đường truyền mạng và sao lưu định kỳ để bảo đảm an toàn.[cite: 3]", concepts: [["cap quyen theo nhom vai tro", "loai bo quyen thua"], ["ma hoa duong truyen", "sao luu dinh ky"]] }
+    ]
+  },
+  {
+    id: "2.9", part: "c2", title: "Câu 2.9: Nguy cơ dữ liệu và tác động đối với tam giác CIA",
+    desc: "Một hệ thống đám mây lưu trữ dữ liệu quan trọng gồm các máy ảo và có nhiều tài khoản quản trị.[cite: 3]",
+    subqs: [
+      { q: "1. Phân tích các nguy cơ đối với dữ liệu (1.0đ):", sample: "Truy cập trái phép làm rò rỉ hoặc chỉnh sửa dữ liệu mật; tài khoản cấp quyền quá rộng hoặc cấu hình sai sót; lỗ hổng bảo mật trên hệ điều hành và ảo hóa chưa vá.[cite: 3]", concepts: [["truy cap trai phep ro ri chinh sua"], ["cap quyen qua rong cau hinh sai"], ["lo hong bao mat he dieu hanh ao hoa"]] },
+      { q: "2. Phân tích tác động đối với tính bí mật, toàn vẹn và khả dụng (1.0đ):", sample: "Mất tính bí mật: Người không thẩm quyền đọc được dữ liệu. Mất tính toàn vẹn: Dữ liệu bị sửa đổi trái phép hoặc sai lệch. Mất tính khả dụng: Dịch vụ bị gián đoạn, tê liệt không truy cập được.[cite: 3]", concepts: [["mat tinh bi mat doc trom du lieu"], ["mat tinh toan ven sua doi trai phep"], ["mat tinh kha dung gian doan te liet"]] },
+      { q: "3. Đề xuất các nhóm giải pháp bảo vệ (1.0đ):", sample: "Kiểm soát tài khoản và phân quyền theo đặc quyền tối thiểu; mã hóa dữ liệu (lưu trữ và đường truyền); vá lỗi hệ điều hành, bảo vệ Hypervisor và lập kịch bản ứng phó sự cố.[cite: 3]", concepts: [["dac quyen toi thieu"], ["ma hoa luu tru va duong truyen"], ["va loi he dieu hanh hypervisor", "ung pho su co"]] }
+    ]
+  },
+  {
+    id: "2.10", part: "c2", title: "Câu 2.10: Mã hóa Data-at-rest và Data-in-transit",
+    desc: "Doanh nghiệp muốn bảo vệ dữ liệu quan trọng trên đám mây cả khi lưu trữ và khi truyền tải qua mạng.[cite: 3]",
+    subqs: [
+      { q: "1. Phân biệt dữ liệu lưu trữ và dữ liệu truyền (1.0đ):", sample: "Data-at-rest là dữ liệu nằm yên trên các phân vùng ổ đĩa, cơ sở dữ liệu và bản backup. Data-in-transit là dữ liệu đang di chuyển trên mạng giữa người dùng, ứng dụng và máy chủ.[cite: 2, 3]", concepts: [["data at rest nam yen tren o dia csdl backup"], ["data in transit di chuyen tren moi truong mang"]] },
+      { q: "2. Đề xuất giải pháp mã hóa cho từng trạng thái (1.0đ):", sample: "Dữ liệu lưu trữ: Sử dụng mã hóa ổ đĩa, tập tin hoặc CSDL (AES) chống đọc lén. Dữ liệu truyền: Sử dụng các giao thức mã hóa mạng (TLS/HTTPS, VPN) chống nghe lén và đánh chặn.[cite: 3]", concepts: [["ma hoa o dia tap tin csdl aes"], ["tls https vpn ma hoa mang"]] },
+      { q: "3. Phân tích yêu cầu quản lý khóa và lý do kết hợp (1.0đ):", sample: "Khóa mã hóa phải được lưu trữ an toàn, phân quyền chặt chẽ và quản lý vòng đời; kết hợp cả hai tạo lớp bảo vệ khép kín, tránh để lộ dữ liệu ở các điểm trung gian.[cite: 3]", concepts: [["quan ly khoa an toan vong doi khoa"], ["lop bao ve khep kin", "tranh lo o diem trung gian"]] }
+    ]
+  },
+  {
+    id: "2.11", part: "c2", title: "Câu 2.11: Máy chủ ảo có nguy cơ và nền tảng ảo hóa nhiều admin",
+    desc: "Một máy chủ ảo có nguy cơ bị khai thác; hệ điều hành chưa cập nhật đầy đủ và Hypervisor có nhiều tài khoản quản trị.[cite: 3]",
+    subqs: [
+      { q: "1. Đề xuất biện pháp bảo mật hệ điều hành (1.0đ):", sample: "Cập nhật đầy đủ các bản vá bảo mật; tắt hoặc gỡ bỏ các dịch vụ và cổng mạng không cần thiết để thu hẹp bề mặt tấn công; quản lý tài khoản và ghi nhật ký hoạt động.[cite: 2, 3]", concepts: [["cap nhat ban va he dieu hanh"], ["tat dich vu cong mang khong can thiet", "thu hep be mat"], ["quan ly tai khoan ghi nhat ky"]] },
+      { q: "2. Đề xuất biện pháp bảo mật môi trường ảo hóa (1.0đ):", sample: "Cập nhật các bản vá cho Hypervisor; kiểm soát nghiêm ngặt tài khoản admin (dùng 2FA, tách biệt quyền); phân tách mạng và cô lập tài nguyên giữa các máy ảo.[cite: 3]", concepts: [["cap nhat ban va hypervisor"], ["kiem soat admin 2fa tach biet quyen"], ["co lap mang tai nguyen giua cac vm"]] },
+      { q: "3. Phân tích kiểm soát quyền, giám sát và sao lưu (1.0đ):", sample: "Rà soát tài khoản, thu hồi quyền thừa theo quyền tối thiểu; giám sát tài nguyên và hoạt động quản trị để phát hiện bất thường; sao lưu định kỳ và sẵn sàng khôi phục khi gặp sự cố.[cite: 3]", concepts: [["quyen toi thieu thu hoi quyen thua"], ["giam sat bat thuong", "sao luu dinh ky khoi phuc"]] }
+    ]
+  },
+  {
+    id: "2.12", part: "c2", title: "Câu 2.12: Bảo mật tổng thể: Dữ liệu, HĐH và môi trường ảo hóa",
+    desc: "Doanh nghiệp muốn xây dựng giải pháp bảo mật tổng thể cho hệ thống đám mây gồm dữ liệu, hệ điều hành và lớp ảo hóa.[cite: 3]",
+    subqs: [
+      { q: "1. Đề xuất nhóm giải pháp bảo vệ dữ liệu (1.0đ):", sample: "Mã hóa dữ liệu ở cả hai trạng thái (lưu trữ và đường truyền); phân quyền truy cập chặt chẽ; sao lưu dữ liệu định kỳ và sẵn sàng phương án phục hồi.[cite: 3]", concepts: [["ma hoa du lieu luu tru va duong truyen"], ["phan quyen chat che", "sao luu dinh ky phuc hoi"]] },
+      { q: "2. Đề xuất nhóm giải pháp bảo vệ hệ điều hành và ảo hóa (1.0đ):", sample: "HĐH: Cập nhật bản vá, tắt dịch vụ thừa, cấu hình an toàn và ghi log; Ảo hóa: Cập nhật Hypervisor, cô lập mạng máy ảo và siết chặt tài khoản admin nền tảng.[cite: 3]", concepts: [["hdh cap nhat ban va tat dich vu ghi log"], ["ao hoa hypervisor co lap mang admin"]] },
+      { q: "3. Phân tích cách phối hợp phòng thủ đa lớp (1.0đ):", sample: "Ba lớp bảo vệ có tính phụ thuộc lẫn nhau: Bảo vệ dữ liệu là cốt lõi, nhưng HĐH và Hypervisor là nền móng; nếu Hypervisor sập thì toàn bộ VM bị chiếm, do đó phải phòng thủ chiều sâu cả ba lớp.[cite: 2, 3]", concepts: [["phu thuoc lan nhau", "du lieu la cot loi"], ["hypervisor la nen mong", "phong thu chieu sau ca ba lop"]] }
+    ]
+  },
+  {
+    id: "2.13", part: "c2", title: "Câu 2.13: Nguy cơ cấp quyền quá rộng & quy trình rà soát quyền",
+    desc: "Một hệ thống đám mây có nhiều tài khoản được cấp quyền rộng hơn nhu cầu công việc thực tế.[cite: 3]",
+    subqs: [
+      { q: "1. Phân tích nguy cơ của việc cấp quyền quá rộng (1.0đ):", sample: "Làm tăng diện tích rủi ro và phạm vi ảnh hưởng khi tài khoản bị lộ mật khẩu; dễ dẫn đến việc vô tình hoặc cố ý truy cập, chỉnh sửa, xóa nhầm dữ liệu quan trọng ngoài phạm vi công việc.[cite: 3]", concepts: [["tang dien tich rui ro", "lo mat khau"], ["truy cap xoa nham du lieu ngoai pham vi"]] },
+      { q: "2. Đề xuất quy trình rà soát và giảm quyền (1.0đ):", sample: "Lập danh sách toàn bộ tài khoản và quyền hiện có; đối chiếu với bản mô tả công việc thực tế; cắt bỏ quyền dư thừa, đưa về nguyên tắc quyền tối thiểu và kiểm thử lại quyền thực tế.[cite: 3]", concepts: [["lap danh sach doi chieu cong viec"], ["cat bo quyen du thua", "quyen toi thieu", "kiem thu lai"]] },
+      { q: "3. Đề xuất cách tổ chức quyền theo vai trò/nhóm (1.0đ):", sample: "Gom tài khoản vào các nhóm vai trò công việc (RBAC), cấp quyền cho nhóm thay vì cá nhân; tách riêng tài khoản admin và người dùng; rà soát quyền định kỳ hoặc khi có biến động nhân sự.[cite: 3]", concepts: [["gom vao nhom vai tro rbac", "cap quyen theo nhom"], ["tach rieng admin va user", "ra soat dinh ky thay doi nhan su"]] }
+    ]
+  },
+  {
+    id: "2.14", part: "c2", title: "Câu 2.14: Nguy cơ tại lớp ảo hóa ảnh hưởng hàng loạt máy ảo",
+    desc: "Hệ thống sử dụng nhiều máy ảo để cung cấp dịch vụ; lo ngại sự cố tại lớp ảo hóa có thể ảnh hưởng đồng loạt nhiều máy ảo.[cite: 3]",
+    subqs: [
+      { q: "1. Phân tích nguy cơ tại lớp ảo hóa (1.0đ):", sample: "Lớp ảo hóa là nền móng quản lý toàn bộ máy ảo bên trên; nếu Hypervisor bị khai thác hoặc cấu hình sai, sự cố hoặc mã độc sẽ lây lan làm tê liệt đồng loạt nhiều máy ảo.[cite: 3]", concepts: [["nen mong quan ly toan bo vm"], ["hypervisor bi khai thac cau hinh sai", "te liet hang loat may ao"]] },
+      { q: "2. Đề xuất biện pháp bảo vệ nền tảng ảo hóa (1.0đ):", sample: "Cập nhật đầy đủ các bản vá lỗi cho Hypervisor; khóa chặt tài khoản quản trị nền tảng (dùng mật khẩu mạnh, 2FA); giám sát liên tục các thao tác cấu hình nền tảng.[cite: 3]", concepts: [["cap nhat ban va cho hypervisor"], ["khoa chat admin mat khau manh 2fa"], ["giam sat thao tac cau hinh"]] },
+      { q: "3. Đề xuất biện pháp bảo vệ máy ảo, giám sát và sao lưu (1.0đ):", sample: "Phân tách vùng mạng độc lập giữa các máy ảo, giới hạn tài nguyên và vá HĐH máy ảo; theo dõi tải nền tảng, định kỳ sao lưu dữ liệu máy ảo và diễn tập kịch bản khôi phục sự cố sập nền tảng.[cite: 3]", concepts: [["phan tach vung mang doc lap giua cac vm"], ["theo doi tai sao luu may ao", "dien tap khoi phuc"]] }
+    ]
+  },
+  {
+    id: "2.15", part: "c2", title: "Câu 2.15: Hệ thống vừa mất an toàn dữ liệu vừa ảo hóa lỏng lẻo",
+    desc: "Một hệ thống đám mây vừa có nguy cơ mất an toàn dữ liệu vừa có môi trường ảo hóa được quản trị chưa chặt chẽ.[cite: 3]",
+    subqs: [
+      { q: "1. Xác định các nhóm nguy cơ chính (1.0đ):", sample: "Dữ liệu có nguy cơ rò rỉ nội dung, sửa đổi trái phép; tài khoản quản trị phân quyền lỏng lẻo, cấp quyền quá rộng; lỗ hổng từ HĐH chưa vá và Hypervisor thiếu kiểm soát ảnh hưởng diện rộng.[cite: 3]", concepts: [["du lieu ro ri sua doi trai phep"], ["phan quyen long leo quyen qua rong"], ["lo hong hdh va hypervisor anh huong dien rong"]] },
+      { q: "2. Đề xuất giải pháp bảo vệ dữ liệu (1.0đ):", sample: "Mã hóa dữ liệu đa trạng thái (cả khi lưu trữ trên đĩa và khi truyền trên mạng); phân quyền đọc/ghi theo vai trò, rà soát quyền định kỳ và lập lịch sao lưu tự động.[cite: 3]", concepts: [["ma hoa du lieu luu tru va truyen mang"], ["phan quyen theo vai tro", "sao luu tu dong"]] },
+      { q: "3. Đề xuất giải pháp bảo vệ HĐH, ảo hóa và cách phối hợp (1.0đ):", sample: "Cập nhật bản vá định kỳ cho cả HĐH và Hypervisor; cô lập mạng giữa các máy ảo; siết chặt quyền admin; thiết lập phòng thủ chiều sâu kết hợp giám sát liên tục để loại bỏ điểm lỗi đơn.[cite: 3]", concepts: [["cap nhat ban va hdh va hypervisor"], ["co lap mang siet quyen admin"], ["phong thu chieu sau", "loai bo diem loi don"]] }
+    ]
+  },
+  {
+    id: "2.16", part: "c2", title: "Câu 2.16: Điều tra và củng cố hệ thống sau sự cố bảo mật",
+    desc: "Sau một sự cố bảo mật làm gián đoạn dịch vụ đám mây, doanh nghiệp muốn kiểm tra nguyên nhân và củng cố lại hệ thống.[cite: 3]",
+    subqs: [
+      { q: "1. Xác định phạm vi và tác động của sự cố (1.0đ):", sample: "Xác định rõ dịch vụ bị gián đoạn, thời điểm xảy ra và thời gian tê liệt; thống kê danh sách dữ liệu, máy chủ bị ảnh hưởng; đánh giá tổn hại đối với tính bí mật, toàn vẹn và khả dụng.[cite: 3]", concepts: [["dich vu bi gian doan thoi diem thoi gian"], ["danh sach du lieu may chu bi anh huong"], ["danh gia ton hai tinh bi mat toan ven kha dung"]] },
+      { q: "2. Kiểm tra các thành phần có thể liên quan (1.0đ):", sample: "Kiểm tra nhật ký truy cập (log) của các tài khoản quản trị để tìm dấu hiệu bị xâm nhập; kiểm tra cấu hình và lỗ hổng trên hệ điều hành, dịch vụ mạng, cơ sở dữ liệu và Hypervisor.[cite: 3]", concepts: [["kiem tra log nhat ky tai khoan quan tri"], ["kiem tra cau hinh lo hong hdh csdl hypervisor"]] },
+      { q: "3. Đề xuất biện pháp củng cố và đánh giá lại sau xử lý (1.0đ):", sample: "Thu hồi quyền thừa, cập nhật bản vá bảo mật, cô lập lại mạng, mã hóa dữ liệu và củng cố sao lưu; kiểm thử lại toàn bộ cấu hình mới và cập nhật kịch bản ứng phó sự cố để ngăn tái diễn.[cite: 3]", concepts: [["thu hoi quyen cap nhat ban va ma hoa sao luu"], ["kiem thu lai cau hinh", "cap nhat kich ban ung pho"]] }
+    ]
+  }
+];
+
+// ==================== TOÀN BỘ 16 BÀI TOÁN TÍNH TOÁN FULL (FILE P2) ====================
+const DB_MATH_ALL = {
+  "3.1": {
+    name: "Câu 3.1: Chi phí dịch vụ đám mây (VM, Lưu trữ, Mạng)",
+    gen(isRand) {
+      const vms = isRand ? (Math.floor(Math.random() * 3) + 2) : 2;
+      const hours = 730;
+      const vmRate = isRand ? [0.08, 0.10, 0.12, 0.15][Math.floor(Math.random() * 4)] : 0.10;
+      const storageGB = isRand ? [300, 400, 500, 600][Math.floor(Math.random() * 4)] : 400;
+      const storageRate = 0.05;
+      const outGB = isRand ? [80, 100, 150, 200][Math.floor(Math.random() * 4)] : 100;
+      const outRate = 0.08;
+
+      const totalH = vms * hours;
+      const cVM = parseFloat((totalH * vmRate).toFixed(2));
+      const cStore = parseFloat((storageGB * storageRate).toFixed(2));
+      const cOut = parseFloat((outGB * outRate).toFixed(2));
+      const cTotal = parseFloat((cVM + cStore + cOut).toFixed(2));
+
+      return {
+        prompt: `Một dịch vụ sử dụng <b>${vms} máy ảo</b>, mỗi máy chạy <b>${hours} giờ/tháng</b> với đơn giá <b>${vmRate.toFixed(2)} USD/giờ</b>; lưu trữ <b>${storageGB} GB</b> giá <b>${storageRate.toFixed(2)} USD/GB-tháng</b>; truyền dữ liệu ra ngoài <b>${outGB} GB</b> giá <b>${outRate.toFixed(2)} USD/GB</b>.[cite: 1, 3]`,
+        steps: [
+          { q: "1. Tính tổng số giờ sử dụng máy ảo trong tháng (1.0đ):", sol: `${vms} × ${hours} = <b>${totalH} giờ-máy</b> (hoặc giờ)[cite: 1, 3]` },
+          { q: "2. Tính chi phí sử dụng máy ảo trong tháng (1.0đ):", sol: `${totalH} × ${vmRate.toFixed(2)} = <b>${cVM} USD</b>[cite: 1, 3]` },
+          { q: "3. Tính riêng chi phí lưu trữ và chi phí truyền dữ liệu (1.0đ):", sol: `Lưu trữ: ${storageGB} × ${storageRate.toFixed(2)} = <b>${cStore} USD</b> | Truyền dữ liệu: ${outGB} × ${outRate.toFixed(2)} = <b>${cOut} USD</b>[cite: 1, 3]` },
+          { q: "4. Tính tổng chi phí dịch vụ trong tháng (1.0đ):", sol: `${cVM} + ${cStore} + ${cOut} = <b>${cTotal} USD/tháng</b>[cite: 1, 3]` }
+        ]
+      };
+    }
+  },
+  "3.2": {
+    name: "Câu 3.2: So sánh chi phí hai mô hình dịch vụ A và B",
+    gen(isRand) {
+      const vmCost = isRand ? [160, 180, 200][Math.floor(Math.random() * 3)] : 180;
+      const storeCost = isRand ? [30, 35, 40][Math.floor(Math.random() * 3)] : 35;
+      const netCost = isRand ? [10, 15, 20][Math.floor(Math.random() * 3)] : 15;
+      const planB = isRand ? [240, 250, 260][Math.floor(Math.random() * 3)] : 250;
+
+      const subA = vmCost + storeCost;
+      const totalA = subA + netCost;
+      const diff = Math.abs(planB - totalA);
+      const lower = totalA < planB ? "Phương án A" : "Phương án B";
+
+      return {
+        prompt: `Một doanh nghiệp cân nhắc hai phương án thuê máy chủ. Phương án A gồm máy chủ <b>${vmCost} USD/tháng</b>, lưu trữ <b>${storeCost} USD/tháng</b> và truyền dữ liệu <b>${netCost} USD/tháng</b>. Phương án B là gói trọn gói <b>${planB} USD/tháng</b> (đã gồm lưu trữ và mạng).[cite: 3]`,
+        steps: [
+          { q: "1. Tính chi phí máy chủ và lưu trữ của phương án A (1.0đ):", sol: `${vmCost} + ${storeCost} = <b>${subA} USD/tháng</b>[cite: 3]` },
+          { q: "2. Tính tổng chi phí hàng tháng của phương án A (1.0đ):", sol: `${subA} + ${netCost} = <b>${totalA} USD/tháng</b>[cite: 3]` },
+          { q: "3. Xác định tổng chi phí phương án B và chênh lệch so với A (1.0đ):", sol: `Phương án B: <b>${planB} USD/tháng</b> | Chênh lệch: |${planB} - ${totalA}| = <b>${diff} USD/tháng</b>[cite: 3]` },
+          { q: "4. Kết luận phương án có chi phí thấp hơn và nêu yếu tố khác (1.0đ):", sol: `<b>${lower} có chi phí thấp hơn ${diff} USD/tháng</b>. Yếu tố khác: Cần xem xét thêm tính năng, mức độ hỗ trợ kỹ thuật, khả năng mở rộng hoặc chi phí quản trị.[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.3": {
+    name: "Câu 3.3: Tính chi phí máy ảo theo giờ & lưu trữ tháng",
+    gen(isRand) {
+      const vms = isRand ? [2, 3, 4][Math.floor(Math.random() * 3)] : 3;
+      const dailyH = isRand ? [6, 8, 10][Math.floor(Math.random() * 3)] : 8;
+      const days = 30;
+      const rateH = isRand ? [0.10, 0.12, 0.14][Math.floor(Math.random() * 3)] : 0.12;
+      const storeGB = isRand ? [150, 200, 250][Math.floor(Math.random() * 3)] : 200;
+      const rateGB = 0.04;
+
+      const hPerDay = vms * dailyH;
+      const totalH = hPerDay * days;
+      const cVM = parseFloat((totalH * rateH).toFixed(2));
+      const cStore = parseFloat((storeGB * rateGB).toFixed(2));
+      const cTotal = parseFloat((cVM + cStore).toFixed(2));
+
+      return {
+        prompt: `Một doanh nghiệp thuê <b>${vms} máy ảo</b>, mỗi máy sử dụng <b>${dailyH} giờ/ngày</b> trong <b>${days} ngày</b>. Đơn giá máy ảo là <b>${rateH.toFixed(2)} USD/giờ</b>. Thuê <b>${storeGB} GB</b> lưu trữ với đơn giá <b>${rateGB} USD/GB/tháng</b>.[cite: 3]`,
+        steps: [
+          { q: "1. Tính tổng số giờ sử dụng của các máy ảo trong một ngày (1.0đ):", sol: `${vms} × ${dailyH} = <b>${hPerDay} giờ-máy/ngày</b>[cite: 3]` },
+          { q: "2. Tính tổng số giờ sử dụng của các máy ảo trong 30 ngày (1.0đ):", sol: `${hPerDay} × ${days} = <b>${totalH} giờ-máy</b>[cite: 3]` },
+          { q: "3. Tính chi phí máy ảo trong tháng (1.0đ):", sol: `${totalH} × ${rateH.toFixed(2)} = <b>${cVM} USD</b>[cite: 3]` },
+          { q: "4. Tính chi phí lưu trữ và tổng chi phí hàng tháng (1.0đ):", sol: `Lưu trữ: ${storeGB} × ${rateGB} = <b>${cStore} USD</b> | Tổng chi phí: ${cVM} + ${cStore} = <b>${cTotal} USD/tháng</b>[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.4": {
+    name: "Câu 3.4: So sánh tự đầu tư máy chủ (On-Prem) vs Thuê Cloud",
+    gen(isRand) {
+      const buyCost = isRand ? [1000, 1200, 1500][Math.floor(Math.random() * 3)] : 1200;
+      const opPerM = isRand ? [35, 40, 50][Math.floor(Math.random() * 3)] : 40;
+      const cloudPerM = isRand ? [85, 95, 105][Math.floor(Math.random() * 3)] : 95;
+
+      const opYear = opPerM * 12;
+      const totalA = buyCost + opYear;
+      const totalB = cloudPerM * 12;
+      const diff = Math.abs(totalA - totalB);
+      const lower = totalB < totalA ? "Phương án B (Thuê Cloud)" : "Phương án A (Tự đầu tư)";
+
+      return {
+        prompt: `Một doanh nghiệp cân nhắc hai phương án trong 12 tháng. Phương án A tự đầu tư máy chủ ban đầu <b>${buyCost} USD</b> và chi phí điện/bảo trì <b>${opPerM} USD/tháng</b>. Phương án B thuê đám mây <b>${cloudPerM} USD/tháng</b>.[cite: 3]`,
+        steps: [
+          { q: "1. Tính tổng chi phí điện/bảo trì của phương án A trong 12 tháng (1.0đ):", sol: `${opPerM} × 12 = <b>${opYear} USD</b>[cite: 3]` },
+          { q: "2. Tính tổng chi phí phương án A trong năm đầu tiên (1.0đ):", sol: `${buyCost} + ${opYear} = <b>${totalA} USD</b>[cite: 3]` },
+          { q: "3. Tính tổng chi phí phương án B trong 12 tháng (1.0đ):", sol: `${cloudPerM} × 12 = <b>${totalB} USD</b>[cite: 3]` },
+          { q: "4. Tính chênh lệch chi phí và xác định phương án thấp hơn (1.0đ):", sol: `Chênh lệch: |${totalA} - ${totalB}| = <b>${diff} USD</b>. Kết luận: Trong năm đầu tiên, <b>${lower} có chi phí thấp hơn ${diff} USD</b>.[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.5": {
+    name: "Câu 3.5: Tính thời gian xử lý song song (Định luật Amdahl)",
+    gen(isRand) {
+      const times = [240, 300, 360, 480];
+      const pList = [60, 75, 80];
+      const cList = [2, 4, 8];
+      const totalT = isRand ? times[Math.floor(Math.random() * times.length)] : 300;
+      const pPct = isRand ? pList[Math.floor(Math.random() * pList.length)] : 75;
+      const cores = isRand ? cList[Math.floor(Math.random() * cList.length)] : 4;
+
+      const P = pPct / 100;
+      const S = parseFloat((1 - P).toFixed(2));
+      const speedup = parseFloat((1 / (S + (P / cores))).toFixed(3));
+      const newT = parseFloat((totalT / speedup).toFixed(2));
+      const savedT = parseFloat((totalT - newT).toFixed(2));
+
+      return {
+        prompt: `Một tác vụ mất <b>${totalT} phút</b> khi chạy tuần tự; <b>${pPct}%</b> công việc có thể song song hóa. Hệ thống sử dụng <b>${cores} bộ xử lý</b>; bỏ qua chi phí đồng bộ. Áp dụng định luật Amdahl.[cite: 3]`,
+        steps: [
+          { q: "1. Xác định tỷ lệ công việc tuần tự và có thể song song hóa (1.0đ):", sol: `P = ${pPct}% = <b>${P}</b>; Tỷ lệ tuần tự: S = 1 - P = 1 - ${P} = <b>${S}</b>[cite: 3]` },
+          { q: "2. Viết công thức Amdahl và thay số cho các bộ xử lý (1.0đ):", sol: `Speedup = 1 / (S + P/N) = 1 / (${S} + ${P}/${cores}) = <b>1 / ${(S + P/cores).toFixed(4)}</b>[cite: 3]` },
+          { q: "3. Tính hệ số tăng tốc của tác vụ (1.0đ):", sol: `Speedup ≈ <b>${speedup} lần</b>[cite: 3]` },
+          { q: "4. Tính thời gian thực hiện mới và thời gian tiết kiệm được (1.0đ):", sol: `Thời gian mới = ${totalT} ÷ ${speedup} = <b>${newT} phút</b> | Tiết kiệm: ${totalT} - ${newT} = <b>${savedT} phút</b>[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.6": {
+    name: "Câu 3.6: Xác định số máy ảo tối đa theo RAM & vCPU",
+    gen(isRand) {
+      const totalRAM = isRand ? [32, 48, 64][Math.floor(Math.random() * 3)] : 48;
+      const baseRAM = isRand ? [4, 8][Math.floor(Math.random() * 2)] : 8;
+      const totalCPU = isRand ? [16, 20, 24, 32][Math.floor(Math.random() * 4)] : 20;
+      const vmRAM = isRand ? [4, 5, 8][Math.floor(Math.random() * 3)] : 5;
+      const vmCPU = isRand ? [2, 4][Math.floor(Math.random() * 2)] : 4;
+
+      const ramAvail = totalRAM - baseRAM;
+      const vmRAMMax = Math.floor(ramAvail / vmRAM);
+      const vmCPUMax = Math.floor(totalCPU / vmCPU);
+      const finalVM = Math.min(vmRAMMax, vmCPUMax);
+      const bottle = vmRAMMax < vmCPUMax ? "RAM" : (vmRAMMax > vmCPUMax ? "CPU" : "Cả RAM và CPU");
+
+      return {
+        prompt: `Máy chủ vật lý có <b>${totalRAM} GB RAM</b>, dành <b>${baseRAM} GB</b> cho hệ thống nền; tổng tài nguyên CPU cấp được là <b>${totalCPU} vCPU</b>. Mỗi máy ảo cần <b>${vmRAM} GB RAM</b> và <b>${vmCPU} vCPU</b>. Không cấp phát vượt mức.[cite: 3]`,
+        steps: [
+          { q: "1. Tính lượng RAM còn lại dành cho máy ảo (1.0đ):", sol: `${totalRAM} - ${baseRAM} = <b>${ramAvail} GB</b>[cite: 3]` },
+          { q: "2. Tính số máy ảo tối đa theo giới hạn RAM (1.0đ):", sol: `floor(${ramAvail} ÷ ${vmRAM}) = <b>${vmRAMMax} máy ảo</b>[cite: 3]` },
+          { q: "3. Tính số máy ảo tối đa theo giới hạn CPU (1.0đ):", sol: `floor(${totalCPU} ÷ ${vmCPU}) = <b>${vmCPUMax} máy ảo</b>[cite: 3]` },
+          { q: "4. Xác định số máy ảo tối đa triển khai và tài nguyên gây giới hạn (1.0đ):", sol: `min(${vmRAMMax}, ${vmCPUMax}) = <b>${finalVM} máy ảo</b> (Tài nguyên gây giới hạn: <b>${bottle}</b>)[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.7": {
+    name: "Câu 3.7: Cấp phát tài nguyên máy ảo & tìm nút thắt cổ chai",
+    gen(isRand) {
+      const totalRAM = isRand ? [32, 40, 48][Math.floor(Math.random() * 3)] : 32;
+      const baseRAM = 4;
+      const totalCPU = isRand ? [12, 16, 20][Math.floor(Math.random() * 3)] : 12;
+      const vmRAM = 4;
+      const vmCPU = 2;
+
+      const ramAvail = totalRAM - baseRAM;
+      const vmRAMMax = Math.floor(ramAvail / vmRAM);
+      const vmCPUMax = Math.floor(totalCPU / vmCPU);
+      const finalVM = Math.min(vmRAMMax, vmCPUMax);
+      const bottle = vmRAMMax < vmCPUMax ? "RAM" : (vmRAMMax > vmCPUMax ? "CPU" : "Cả RAM và CPU");
+
+      return {
+        prompt: `Máy chủ có <b>${totalRAM} GB RAM</b>, dành <b>${baseRAM} GB</b> cho hệ thống nền; tổng cấp được <b>${totalCPU} vCPU</b>. Mỗi máy ảo cần <b>${vmRAM} GB RAM</b> và <b>${vmCPU} vCPU</b>. Không cấp phát vượt mức.[cite: 3]`,
+        steps: [
+          { q: "1. Tính lượng RAM còn lại dành cho máy ảo (1.0đ):", sol: `${totalRAM} - ${baseRAM} = <b>${ramAvail} GB</b>[cite: 3]` },
+          { q: "2. Tính số máy ảo tối đa theo giới hạn RAM (1.0đ):", sol: `floor(${ramAvail} ÷ ${vmRAM}) = <b>${vmRAMMax} máy ảo</b>[cite: 3]` },
+          { q: "3. Tính số máy ảo tối đa theo giới hạn CPU (1.0đ):", sol: `floor(${totalCPU} ÷ ${vmCPU}) = <b>${vmCPUMax} máy ảo</b>[cite: 3]` },
+          { q: "4. Xác định số máy ảo tối đa có thể triển khai (1.0đ):", sol: `min(${vmRAMMax}, ${vmCPUMax}) = <b>${finalVM} máy ảo</b> (Tài nguyên gây giới hạn: <b>${bottle}</b>)[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.8": {
+    name: "Câu 3.8: Tính thời gian xử lý theo năng suất (4 máy chủ)",
+    gen(isRand) {
+      const totalFiles = isRand ? [200, 240, 320, 400][Math.floor(Math.random() * 4)] : 240;
+      const ratePerServer = isRand ? [15, 20, 25][Math.floor(Math.random() * 3)] : 20;
+      const servers = 4;
+
+      const totalRate = ratePerServer * servers;
+      const tSingle = totalFiles / ratePerServer;
+      const tMulti = totalFiles / totalRate;
+      const tSaved = tSingle - tMulti;
+
+      return {
+        prompt: `Một hệ thống cần xử lý <b>${totalFiles} tệp dữ liệu</b>. Mỗi máy chủ xử lý được <b>${ratePerServer} tệp/giờ</b>. Có <b>${servers} máy chủ</b> hoạt động đồng thời, chia đều khối lượng và không có thời gian chờ.[cite: 3]`,
+        steps: [
+          { q: "1. Tính tổng năng suất xử lý của 4 máy chủ trong một giờ (1.0đ):", sol: `${ratePerServer} × ${servers} = <b>${totalRate} tệp/giờ</b>[cite: 3]` },
+          { q: "2. Tính thời gian cần để xử lý nếu chỉ dùng 1 máy chủ (1.0đ):", sol: `${totalFiles} ÷ ${ratePerServer} = <b>${tSingle} giờ</b>[cite: 3]` },
+          { q: "3. Tính thời gian cần để xử lý khi dùng cả 4 máy chủ (1.0đ):", sol: `${totalFiles} ÷ ${totalRate} = <b>${tMulti} giờ</b>[cite: 3]` },
+          { q: "4. Tính thời gian tiết kiệm được khi dùng 4 máy chủ (1.0đ):", sol: `${tSingle} - ${tMulti} = <b>${tSaved} giờ</b>[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.9": {
+    name: "Câu 3.9: Dự báo dung lượng lưu trữ tăng trưởng & ngưỡng 80%",
+    gen(isRand) {
+      const initTB = isRand ? [2, 3, 4][Math.floor(Math.random() * 3)] : 2;
+      const ratePct = 20;
+
+      const y1 = parseFloat((initTB * 1.20).toFixed(2));
+      const y2 = parseFloat((y1 * 1.20).toFixed(2));
+      const minCap = parseFloat((y2 / 0.80).toFixed(2));
+      const allocTB = Math.ceil(minCap);
+
+      return {
+        prompt: `Doanh nghiệp hiện lưu trữ <b>${initTB} TB</b> dữ liệu; dung lượng tăng <b>${ratePct}% mỗi năm</b> trong 2 năm tới. Quy định dữ liệu sử dụng không quá <b>80%</b> dung lượng lưu trữ được cấp.[cite: 3]`,
+        steps: [
+          { q: "1. Tính dung lượng dữ liệu sau năm thứ nhất (1.0đ):", sol: `${initTB} × 1.20 = <b>${y1} TB</b>[cite: 3]` },
+          { q: "2. Tính dung lượng dữ liệu dự kiến sau năm thứ hai (1.0đ):", sol: `${y1} × 1.20 = <b>${y2} TB</b>[cite: 3]` },
+          { q: "3. Tính dung lượng lưu trữ tối thiểu cần cấp theo ngưỡng sử dụng 80% (1.0đ):", sol: `${y2} ÷ 0.80 = <b>${minCap} TB</b>[cite: 3]` },
+          { q: "4. Đề xuất mức dung lượng cấp phát thực tế (số nguyên TB) và giải thích (1.0đ):", sol: `Đề xuất cấp phát: <b>${allocTB} TB</b>. Giải thích: Do hệ thống chỉ cấp phát mức nguyên TB nên làm tròn lên ${allocTB} TB để không vượt ngưỡng 80%.[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.10": {
+    name: "Câu 3.10: Thời gian truyền file dữ liệu qua mạng",
+    gen(isRand) {
+      const sizeGB = isRand ? [50, 80, 100, 120][Math.floor(Math.random() * 4)] : 80;
+      const speedMbps = isRand ? [150, 200, 300][Math.floor(Math.random() * 3)] : 200;
+      const effPct = isRand ? [70, 75, 80][Math.floor(Math.random() * 3)] : 75;
+
+      const realSpeed = speedMbps * (effPct / 100);
+      const sizeGbit = sizeGB * 8;
+      const sizeMbit = sizeGbit * 1000;
+      const sec = parseFloat((sizeMbit / realSpeed).toFixed(2));
+      const min = parseFloat((sec / 60).toFixed(2));
+      const h = Math.floor(min / 60);
+      const m = Math.round(min % 60);
+
+      return {
+        prompt: `Cần truyền <b>${sizeGB} GB</b> dữ liệu qua đường truyền <b>${speedMbps} Mbps</b>, hiệu suất thực tế <b>${effPct}%</b>. Quy ước 1 GB = 10⁹ byte, 1 Mbps = 10⁶ bit/giây; bỏ qua các yếu tố khác.[cite: 3]`,
+        steps: [
+          { q: "1. Tính tốc độ truyền thực tế tính bằng Mbps (1.0đ):", sol: `${speedMbps} × ${effPct}% = <b>${realSpeed} Mbps</b>[cite: 3]` },
+          { q: "2. Đổi dung lượng dữ liệu sang Mbit (1.0đ):", sol: `${sizeGB} GB × 8 = ${sizeGbit} Gbit = <b>${sizeMbit} Mbit</b>[cite: 3]` },
+          { q: "3. Tính thời gian truyền dữ liệu tính bằng giây (1.0đ):", sol: `${sizeMbit} ÷ ${realSpeed} ≈ <b>${sec} giây</b>[cite: 3]` },
+          { q: "4. Đổi thời gian truyền sang phút và giờ-phút (1.0đ):", sol: `${sec} ÷ 60 ≈ <b>${min} phút</b> (≈ <b>${h > 0 ? h + ' giờ ' : ''}${m} phút</b>)[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.11": {
+    name: "Câu 3.11: Tính dung lượng lưu trữ còn lại cho 5 phòng ban",
+    gen(isRand) {
+      const depts = 5;
+      const perDept = isRand ? [100, 120, 150][Math.floor(Math.random() * 3)] : 120;
+      const totalCap = isRand ? [700, 800, 1000][Math.floor(Math.random() * 3)] : 800;
+      const incPerMonth = isRand ? [20, 25, 30][Math.floor(Math.random() * 3)] : 25;
+      const months = 4;
+
+      const usedNow = depts * perDept;
+      const leftNow = totalCap - usedNow;
+      const incAfter = incPerMonth * months;
+      const leftAfter = leftNow - incAfter;
+
+      return {
+        prompt: `Một đơn vị có <b>${depts} phòng ban</b>, mỗi phòng ban đang sử dụng <b>${perDept} GB</b> dữ liệu. Hệ thống lưu trữ được cấp <b>${totalCap} GB</b>. Dữ liệu tăng thêm <b>${incPerMonth} GB/tháng</b>.[cite: 3]`,
+        steps: [
+          { q: "1. Tính tổng dung lượng dữ liệu của 5 phòng ban (1.0đ):", sol: `${depts} × ${perDept} = <b>${usedNow} GB</b>[cite: 3]` },
+          { q: "2. Tính dung lượng lưu trữ còn lại hiện tại (1.0đ):", sol: `${totalCap} - ${usedNow} = <b>${leftNow} GB</b>[cite: 3]` },
+          { q: "3. Tính dung lượng tăng thêm sau 4 tháng (1.0đ):", sol: `${incPerMonth} × ${months} = <b>${incAfter} GB</b>[cite: 3]` },
+          { q: "4. Tính dung lượng còn lại sau 4 tháng nếu mức tăng không đổi (1.0đ):", sol: `${leftNow} - ${incAfter} = <b>${leftAfter} GB</b>[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.12": {
+    name: "Câu 3.12: Thời gian truyền file với tốc độ thực tế (Mbps)",
+    gen(isRand) {
+      const sizeGB = isRand ? [4, 6, 8, 10][Math.floor(Math.random() * 4)] : 6;
+      const realSpeed = isRand ? [60, 80, 100][Math.floor(Math.random() * 3)] : 80;
+
+      const sizeGbit = sizeGB * 8;
+      const sizeMbit = sizeGbit * 1000;
+      const sec = sizeMbit / realSpeed;
+      const min = sec / 60;
+
+      return {
+        prompt: `Cần truyền <b>${sizeGB} GB</b> dữ liệu qua đường truyền có tốc độ thực tế <b>${realSpeed} Mbps</b>. Quy ước 1 GB = 8 Gbit và 1 Gbit = 1.000 Mbit.[cite: 3]`,
+        steps: [
+          { q: "1. Đổi dung lượng dữ liệu sang Gbit (1.0đ):", sol: `${sizeGB} × 8 = <b>${sizeGbit} Gbit</b>[cite: 3]` },
+          { q: "2. Đổi dung lượng dữ liệu sang Mbit (1.0đ):", sol: `${sizeGbit} × 1.000 = <b>${sizeMbit} Mbit</b>[cite: 3]` },
+          { q: "3. Tính thời gian truyền dữ liệu theo giây (1.0đ):", sol: `${sizeMbit} ÷ ${realSpeed} = <b>${sec} giây</b>[cite: 3]` },
+          { q: "4. Đổi thời gian truyền sang phút (1.0đ):", sol: `${sec} ÷ 60 = <b>${min} phút</b>[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.13": {
+    name: "Câu 3.13: Tính điểm rủi ro (R = P × I) trước & sau kiểm soát",
+    gen(isRand) {
+      const p1 = isRand ? 5 : 5, i1 = isRand ? 4 : 4;
+      const p2 = isRand ? [1, 2][Math.floor(Math.random() * 2)] : 2;
+      const i2 = isRand ? [2, 3][Math.floor(Math.random() * 2)] : 3;
+
+      const r1 = p1 * i1;
+      const r2 = p2 * i2;
+      const redAbs = r1 - r2;
+      const redPct = ((redAbs / r1) * 100).toFixed(0);
+
+      return {
+        prompt: `Điểm rủi ro R = Khả năng xảy ra × Mức độ tác động. Trước kiểm soát: khả năng <b>${p1}</b>, tác động <b>${i1}</b>. Sau kiểm soát: khả năng <b>${p2}</b>, tác động <b>${i2}</b>.[cite: 3]`,
+        steps: [
+          { q: "1. Viết công thức xác định điểm rủi ro (1.0đ):", sol: `<b>Điểm rủi ro (R) = Khả năng xảy ra (P) × Mức độ tác động (I)</b>[cite: 3]` },
+          { q: "2. Tính điểm rủi ro trước khi áp dụng kiểm soát (1.0đ):", sol: `R1 = ${p1} × ${i1} = <b>${r1} điểm</b>[cite: 3]` },
+          { q: "3. Tính điểm rủi ro sau khi áp dụng biện pháp kiểm soát (1.0đ):", sol: `R2 = ${p2} × ${i2} = <b>${r2} điểm</b>[cite: 3]` },
+          { q: "4. Tính mức giảm tuyệt đối và tỷ lệ giảm điểm rủi ro (1.0đ):", sol: `Giảm tuyệt đối: ${r1} - ${r2} = <b>${redAbs} điểm</b> | Tỷ lệ giảm: (${redAbs} ÷ ${r1}) × 100% = <b>${redPct}%</b> (Biện pháp đạt hiệu quả cao)[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.14": {
+    name: "Câu 3.14: Đánh giá mốc RPO & thời hạn khôi phục RTO",
+    gen(isRand) {
+      const bHour = isRand ? Math.floor(Math.random() * 3) : 1;
+      const cHour = isRand ? Math.floor(Math.random() * 4) + 12 : 13;
+      const rpo = 6;
+      const rto = 3;
+
+      const diff = cHour - bHour;
+      const isRpoOk = diff <= rpo;
+      const deadline = cHour + rto;
+
+      return {
+        prompt: `Bản sao lưu gần nhất hoàn tất lúc <b>0${bHour}:00</b>; sự cố xảy ra lúc <b>${cHour}:00</b> cùng ngày. Mục tiêu RPO không quá <b>${rpo} giờ</b> và RTO là <b>${rto} giờ</b>.[cite: 3]`,
+        steps: [
+          { q: "1. Tính khoảng thời gian từ bản sao lưu gần nhất đến khi xảy ra sự cố (1.0đ):", sol: `${cHour}:00 - 0${bHour}:00 = <b>${diff} giờ</b>[cite: 3]` },
+          { q: "2. Xác định khoảng dữ liệu có nguy cơ mất nếu khôi phục từ bản sao lưu (1.0đ):", sol: `Dữ liệu phát sinh trong vòng <b>${diff} giờ</b> (từ 0${bHour}:00 đến ${cHour}:00) có nguy cơ bị mất[cite: 3]` },
+          { q: "3. Đánh giá việc đáp ứng mục tiêu RPO 6 giờ và giải thích (1.0đ):", sol: `<b>${isRpoOk ? 'ĐẠT' : 'KHÔNG ĐẠT'}</b> mục tiêu RPO. Giải thích: Khoảng dữ liệu mất mát là ${diff} giờ ${isRpoOk ? '≤' : '>'} ngưỡng RPO cho phép (${rpo} giờ).[cite: 3]` },
+          { q: "4. Xác định thời điểm muộn nhất cần hoàn tất khôi phục để đạt RTO (1.0đ):", sol: `${cHour}:00 + ${rto} giờ = <b>${deadline}:00 cùng ngày</b>[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.15": {
+    name: "Câu 3.15: Dung lượng lưu trữ bản sao lưu Full + Incremental",
+    gen(isRand) {
+      const fullGB = isRand ? [400, 500, 600][Math.floor(Math.random() * 3)] : 500;
+      const incGB = isRand ? [30, 40, 50][Math.floor(Math.random() * 3)] : 40;
+      const incCount = 5;
+      const devGB = isRand ? [700, 750, 800][Math.floor(Math.random() * 3)] : 750;
+
+      const totalInc = incGB * incCount;
+      const totalAll = fullGB + totalInc;
+      const freeGB = devGB - totalAll;
+
+      return {
+        prompt: `Hệ thống có bản sao lưu đầy đủ <b>${fullGB} GB</b>. Mỗi bản sao lưu tăng dần hằng ngày chiếm <b>${incGB} GB</b>. Lưu 1 bản đầy đủ và <b>${incCount} bản tăng dần</b>. Thiết bị có dung lượng <b>${devGB} GB</b>.[cite: 3]`,
+        steps: [
+          { q: "1. Xác định dung lượng của một bản sao lưu đầy đủ (1.0đ):", sol: `<b>${fullGB} GB</b>[cite: 3]` },
+          { q: "2. Tính tổng dung lượng của 5 bản sao lưu tăng dần (1.0đ):", sol: `${incGB} × ${incCount} = <b>${totalInc} GB</b>[cite: 3]` },
+          { q: "3. Tính tổng dung lượng cần để lưu 1 bản đầy đủ và 5 bản tăng dần (1.0đ):", sol: `${fullGB} + ${totalInc} = <b>${totalAll} GB</b>[cite: 3]` },
+          { q: "4. Tính dung lượng còn trống trên thiết bị sau khi lưu các bản sao lưu (1.0đ):", sol: `${devGB} - ${totalAll} = <b>${freeGB} GB</b>[cite: 3]` }
+        ]
+      };
+    }
+  },
+  "3.16": {
+    name: "Câu 3.16: Tỷ lệ phần trăm giảm đăng nhập thất bại",
+    gen(isRand) {
+      const fail1 = isRand ? [100, 120, 140][Math.floor(Math.random() * 3)] : 120;
+      const h1 = 4;
+      const fail2 = isRand ? [12, 18, 24][Math.floor(Math.random() * 3)] : 18;
+      const h2 = 3;
+
+      const rate1 = fail1 / h1;
+      const rate2 = fail2 / h2;
+      const redAbs = rate1 - rate2;
+      const redPct = ((redAbs / rate1) * 100).toFixed(0);
+
+      return {
+        prompt: `Trước áp dụng chính sách, ghi nhận <b>${fail1} lần</b> đăng nhập lỗi trong <b>${h1} giờ</b>. Sau áp dụng, ghi nhận <b>${fail2} lần</b> trong <b>${h2} giờ</b>. So sánh số lần trung bình mỗi giờ.[cite: 3]`,
+        steps: [
+          { q: "1. Tính số lần đăng nhập thất bại trung bình mỗi giờ trước áp dụng (1.0đ):", sol: `${fail1} ÷ ${h1} = <b>${rate1} lần/giờ</b>[cite: 3]` },
+          { q: "2. Tính số lần đăng nhập thất bại trung bình mỗi giờ sau áp dụng (1.0đ):", sol: `${fail2} ÷ ${h2} = <b>${rate2} lần/giờ</b>[cite: 3]` },
+          { q: "3. Tính mức giảm tuyệt đối số lần trung bình mỗi giờ (1.0đ):", sol: `${rate1} - ${rate2} = <b>${redAbs} lần/giờ</b>[cite: 3]` },
+          { q: "4. Tính tỷ lệ phần trăm giảm so với trước khi áp dụng chính sách (1.0đ):", sol: `(${redAbs} ÷ ${rate1}) × 100% = <b>${redPct}%</b>[cite: 3]` }
+        ]
+      };
+    }
+  }
+};
+
+// ==================== BỘ TẠO ĐỀ THI THỬ RANDOM (TAB 1) ====================
+let currentMockExam = null;
+let mockTimerInterval = null;
+let mockSeconds = 3600;
+
+function rollNewExam() {
+  const c1List = DB_THEORY_ALL.filter(q => q.part === "c1");
+  const c2List = DB_THEORY_ALL.filter(q => q.part === "c2");
+  const mathKeys = Object.keys(DB_MATH_ALL);
+
+  const pickedC1 = c1List[Math.floor(Math.random() * c1List.length)];
+  const pickedC2 = c2List[Math.floor(Math.random() * c2List.length)];
+  const pickedMathKey = mathKeys[Math.floor(Math.random() * mathKeys.length)];
+  const pickedMath = DB_MATH_ALL[pickedMathKey].gen(true);
+
+  currentMockExam = {
+    c1: pickedC1,
+    c2: pickedC2,
+    c3: pickedMath
+  };
+
+  $('mockExamCode').textContent = `MÃ ĐỀ: CLOUD-EXAM-${Math.floor(Math.random() * 899 + 100)}`;
+  $('mockScoreDashboard').classList.add('hidden');
+
+  renderMockUI();
+
+  // Reset Timer
+  clearInterval(mockTimerInterval);
+  mockSeconds = 3600;
+  mockTimerInterval = setInterval(() => {
+    mockSeconds--;
+    const m = Math.floor(mockSeconds / 60);
+    const s = mockSeconds % 60;
+    $('mockTimer').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    if (mockSeconds <= 0) {
+      clearInterval(mockTimerInterval);
+      alert("Hết giờ làm bài! Tự động nộp bài.");
+      submitMockExam();
+    }
+  }, 1000);
+}
+
+function renderMockUI() {
+  const box = $('mockExamContainer');
+  box.innerHTML = '';
+
+  // Render C1 (3.0đ)
+  const c1 = currentMockExam.c1;
+  const card1 = document.createElement('div');
+  card1.className = 'step-card';
+  card1.innerHTML = `
+    <div class="step-title">CÂU 1 (SO 2.3) (3.0 ĐIỂM) - TỔNG QUAN & KIẾN TRÚC[cite: 1]</div>
+    <p style="margin-bottom:10px;"><b>Tình huống:</b> ${c1.desc}</p>
+    ${c1.subqs.map((sq, i) => `
+      <div style="margin-bottom:12px;">
+        <label style="font-weight:700;">${sq.q}</label>
+        <textarea class="fc-textarea" id="mock_c1_${i}" placeholder="Gõ câu trả lời đầy đủ của bạn..."></textarea>
+        <div id="mock_c1_res_${i}" class="hidden"></div>
+      </div>
+    `).join('')}
+  `;
+  box.appendChild(card1);
+
+  // Render C2 (3.0đ)
+  const c2 = currentMockExam.c2;
+  const card2 = document.createElement('div');
+  card2.className = 'step-card';
+  card2.innerHTML = `
+    <div class="step-title">CÂU 2 (SO 2.3) (3.0 ĐIỂM) - MẠNG TRUY NHẬP & BẢO MẬT[cite: 1]</div>
+    <p style="margin-bottom:10px;"><b>Tình huống:</b> ${c2.desc}</p>
+    ${c2.subqs.map((sq, i) => `
+      <div style="margin-bottom:12px;">
+        <label style="font-weight:700;">${sq.q}</label>
+        <textarea class="fc-textarea" id="mock_c2_${i}" placeholder="Gõ câu trả lời đầy đủ của bạn..."></textarea>
+        <div id="mock_c2_res_${i}" class="hidden"></div>
+      </div>
+    `).join('')}
+  `;
+  box.appendChild(card2);
+
+  // Render C3 (4.0đ)
+  const c3 = currentMockExam.c3;
+  const card3 = document.createElement('div');
+  card3.className = 'step-card';
+  card3.innerHTML = `
+    <div class="step-title">CÂU 3 (SO 6.2) (4.0 ĐIỂM) - BÀI TOÁN TÍNH TOÁN[cite: 1]</div>
+    <p style="margin-bottom:10px;"><b>Đề bài:</b> ${c3.prompt}</p>
+    ${c3.steps.map((st, i) => `
+      <div style="margin-bottom:12px;">
+        <label style="font-weight:700;">${st.q}</label>
+        <input type="text" class="fc-textarea" style="min-height:auto; height:40px; margin:4px 0 0;" id="mock_c3_${i}" placeholder="Gõ kết quả tính toán kèm đơn vị...">
+        <div id="mock_c3_res_${i}" class="hidden"></div>
+      </div>
+    `).join('')}
+  `;
+  box.appendChild(card3);
+}
+
+function submitMockExam() {
+  clearInterval(mockTimerInterval);
+  let totalScore = 0;
+  let correctCount = 0;
+  let partialCount = 0;
+  let emptyCount = 0;
+
+  // Chấm C1
+  currentMockExam.c1.subqs.forEach((sq, i) => {
+    const val = $(`mock_c1_${i}`).value;
+    const res = evaluateSentenceMatch(val, sq.sample, sq.concepts);
+    totalScore += res.score;
+    if (res.status === "good") correctCount++;
+    else if (res.status === "warn") partialCount++;
+    else if (res.status === "empty") emptyCount++;
+
+    const box = $(`mock_c1_res_${i}`);
+    box.className = `check-result-box ${res.status}`;
+    box.innerHTML = `
+      <b>Đánh giá: ${res.text}</b> (${res.score.toFixed(1)}/1.0 điểm)<br>
+      <b>Đáp án câu chuẩn:</b> ${sq.sample}
+    `;
+    box.classList.remove('hidden');
+  });
+
+  // Chấm C2
+  currentMockExam.c2.subqs.forEach((sq, i) => {
+    const val = $(`mock_c2_${i}`).value;
+    const res = evaluateSentenceMatch(val, sq.sample, sq.concepts);
+    totalScore += res.score;
+    if (res.status === "good") correctCount++;
+    else if (res.status === "warn") partialCount++;
+    else if (res.status === "empty") emptyCount++;
+
+    const box = $(`mock_c2_res_${i}`);
+    box.className = `check-result-box ${res.status}`;
+    box.innerHTML = `
+      <b>Đánh giá: ${res.text}</b> (${res.score.toFixed(1)}/1.0 điểm)<br>
+      <b>Đáp án câu chuẩn:</b> ${sq.sample}
+    `;
+    box.classList.remove('hidden');
+  });
+
+  // Mở đáp án C3
+  currentMockExam.c3.steps.forEach((st, i) => {
+    const val = $(`mock_c3_${i}`).value.trim();
+    if (!val) emptyCount++;
+    const box = $(`mock_c3_res_${i}`);
+    box.className = 'check-result-box good';
+    box.innerHTML = `<b>Lời giải chi tiết:</b> ${st.sol}`;
+    box.classList.remove('hidden');
+  });
+
+  // Hiển thị Dashboard
+  $('mockScoreDashboard').classList.remove('hidden');
+  $('resScore').textContent = `${totalScore.toFixed(1)}/6.0đ`;
+  $('resCorrect').textContent = correctCount;
+  $('resPartial').textContent = partialCount;
+  $('resEmpty').textContent = emptyCount;
+
+  let verdict = "";
+  if (totalScore >= 5.0) {
+    verdict = "🎉 Đỉnh chóp! @mrfice5 phong bạn làm Chiến thần Đám mây! Tự tin 9-10 điểm bước vào phòng thi nhé![cite: 4]";
+  } else if (totalScore >= 3.0) {
+    verdict = "😅 Nước ngập ngang ngực rồi vẫn bơi được 5-6 điểm qua môn! Ôn lại các ý còn thiếu ngay![cite: 4]";
+  } else {
+    verdict = "😭 Báo động đỏ Tam Tai! Nước ngập qua đầu rồi bạn ơi! Xem lại đáp án chi tiết và luyện viết lại ngay![cite: 4]";
+  }
+  $('mockFunnyVerdict').textContent = verdict;
+
+  window.scrollTo({ top: $('mockScoreDashboard').offsetTop - 60, behavior: 'smooth' });
+}
+
+$('btnRollNewExam').onclick = rollNewExam;
+$('btnSubmitMockExam').onclick = submitMockExam;
+
+// ==================== TAB 2: RENDER 32 CÂU LÝ THUYẾT ====================
+function renderTheoryBank(filter = "all") {
+  const box = $('theoryQuestionsList');
+  box.innerHTML = '';
+  const filtered = DB_THEORY_ALL.filter(q => filter === "all" || q.part === filter);
+
+  filtered.forEach((qObj, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'step-card';
+    card.innerHTML = `
+      <div class="step-title">${qObj.title}</div>
+      <p style="color:var(--ink-muted); margin-bottom:12px;"><b>Tình huống:</b> ${qObj.desc}</p>
+      ${qObj.subqs.map((sq, sIdx) => `
+        <div style="margin-bottom:16px; border-top:1px dashed var(--border-color); padding-top:10px;">
+          <label style="font-weight:700;">${sq.q}</label>
+          <textarea class="fc-textarea" id="th_inp_${qIdx}_${sIdx}" placeholder="Gõ câu trả lời của bạn vào đây..."></textarea>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <button type="button" class="btn-primary btn-eval-th" data-q="${qIdx}" data-s="${sIdx}">🔍 Kiểm Tra Cả Câu</button>
+            <span style="font-size:0.8rem; color:var(--ink-muted);">Check ngữ nghĩa cả câu & độ tương đồng</span>
+          </div>
+          <div class="hidden" id="th_res_${qIdx}_${sIdx}"></div>
+        </div>
+      `).join('')}
+    `;
+    box.appendChild(card);
+  });
+
+  box.querySelectorAll('.btn-eval-th').forEach(btn => {
+    btn.onclick = () => {
+      const qIdx = btn.getAttribute('data-q');
+      const sIdx = btn.getAttribute('data-s');
+      const subq = filtered[qIdx].subqs[sIdx];
+      const val = $(`th_inp_${qIdx}_${sIdx}`).value;
+      const res = evaluateSentenceMatch(val, subq.sample, subq.concepts);
+
+      const rBox = $(`th_res_${qIdx}_${sIdx}`);
+      rBox.className = `check-result-box ${res.status}`;
+      rBox.innerHTML = `
+        <div style="font-weight:800; margin-bottom:4px;">KẾT QUẢ: ${res.text} (${res.score.toFixed(1)}/1.0đ)</div>
+        <div style="margin-top:6px;"><b>Câu chuẩn tham khảo:</b><br><span style="color:var(--ink);">${subq.sample}</span></div>
+      `;
+      rBox.classList.remove('hidden');
+    };
+  });
+}
+
+document.querySelectorAll('.fc-filter-btn').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.fc-filter-btn').forEach(btn => btn.classList.remove('btn-primary'));
+    b.classList.add('btn-primary');
+    renderTheoryBank(b.getAttribute('data-filter'));
+  };
+});
+
+// ==================== TAB 3: RENDER 16 BÀI TOÁN TÍNH TOÁN ====================
+function renderSingleMath(key, isRand = true) {
+  const engine = DB_MATH_ALL[key] || DB_MATH_ALL["3.1"];
+  const data = engine.gen(isRand);
+  const box = $('singleMathBox');
+
+  box.innerHTML = `
+    <div class="step-title">
+      <span>${engine.name}</span>
+      <span style="font-size:0.8rem; color:var(--accent);">${isRand ? 'Số mới ngẫu nhiên' : 'Số gốc đề cương'}</span>
+    </div>
+    <div style="background:var(--surface-sub); padding:12px 14px; border-radius:8px; margin-bottom:12px; border-left:4px solid var(--accent); line-height:1.7;">
+      ${data.prompt}
+    </div>
+    ${data.steps.map((st, i) => `
+      <div style="margin-bottom:12px;">
+        <div style="font-weight:700;">${st.q}</div>
+        <div style="display:flex; gap:8px; margin-top:6px;">
+          <input type="text" class="fc-textarea" style="min-height:auto; height:40px; margin:0;" placeholder="Nhập nhẩm đáp án...">
+          <button type="button" class="btn-check-m" data-target="m_sol_${i}">Xem Lời Giải</button>
+        </div>
+        <div class="step-solution hidden" id="m_sol_${i}">
+          ${st.sol}
+        </div>
+      </div>
+    `).join('')}
+  `;
+
+  box.querySelectorAll('.btn-check-m').forEach(btn => {
+    btn.onclick = () => {
+      const target = $(btn.getAttribute('data-target'));
+      target.classList.toggle('hidden');
+      btn.textContent = target.classList.contains('hidden') ? 'Xem Lời Giải' : 'Ẩn Lời Giải';
+    };
+  });
+}
+
+$('mathSelectTopic').onchange = e => renderSingleMath(e.target.value, true);
+$('btnGenSingleMath').onclick = () => renderSingleMath($('mathSelectTopic').value, true);
+$('btnResetDefaultMath').onclick = () => renderSingleMath($('mathSelectTopic').value, false);
+
+// ==================== MÁY TÍNH MINI FLOATING ====================
+let calcVal = "0";
+
+function calcInput(char) {
+  if (calcVal === "0" && !isNaN(char)) calcVal = char;
+  else calcVal += char;
+  $('calcScreen').value = calcVal;
+}
+
+function calcClear() {
+  calcVal = "0";
+  $('calcScreen').value = calcVal;
+}
+
+function calcCalculate() {
+  try {
+    const sanitized = calcVal.replace(/×/g, '*').replace(/÷/g, '/');
+    const res = eval(sanitized);
+    calcVal = String(Number.isInteger(res) ? res : res.toFixed(4));
+    $('calcScreen').value = calcVal;
+  } catch (err) {
+    $('calcScreen').value = "Error";
+    calcVal = "0";
+  }
+}
+
+// Dragging
+const miniCalc = $('miniCalculator');
+const calcHeader = $('calcHeader');
+let isDragging = false, startX, startY, initX, initY;
+
+calcHeader.addEventListener('mousedown', e => {
+  isDragging = true;
+  startX = e.clientX;
+  startY = e.clientY;
+  const rect = miniCalc.getBoundingClientRect();
+  initX = rect.left;
+  initY = rect.top;
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
+
+function onMouseMove(e) {
+  if (!isDragging) return;
+  const dx = e.clientX - startX;
+  const dy = e.clientY - startY;
+  miniCalc.style.left = `${initX + dx}px`;
+  miniCalc.style.top = `${initY + dy}px`;
+  miniCalc.style.bottom = 'auto';
+  miniCalc.style.right = 'auto';
+}
+
+function onMouseUp() {
+  isDragging = false;
+  document.removeEventListener('mousemove', onMouseMove);
+  document.removeEventListener('mouseup', onMouseUp);
+}
+
+$('toggleCalcBtn').onclick = () => miniCalc.classList.toggle('hidden');
+$('closeCalcBtn').onclick = () => miniCalc.classList.add('hidden');
+
+// ==================== CHUYỂN TABS CHÍNH ====================
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -640,305 +1754,19 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-// Toggle đáp án trong tab Đề mẫu
-document.querySelectorAll('.toggle-answer-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const sol = btn.nextElementSibling;
-    sol.classList.toggle('hidden');
-    btn.textContent = sol.classList.contains('hidden') ? '👁️ Xem Đáp Án / Lời Giải' : '🙈 Ẩn Đáp Án';
-  });
-});
-
-// ==================== BỘ TẠO ĐỀ TÍNH TOÁN DYNAMIC ====================
-const MATH_ENGINES = {
-  "3.1": {
-    defaultData: { vms: 2, hours: 730, vmRate: 0.10, storageGB: 400, storageRate: 0.05, outGB: 100, outRate: 0.08 },
-    randomize() {
-      const vms = Math.floor(Math.random() * 3) + 2; // 2 -> 4
-      const hours = 730;
-      const vmRate = (Math.floor(Math.random() * 6) + 8) / 100; // 0.08 -> 0.13
-      const storageGB = (Math.floor(Math.random() * 5) + 3) * 100; // 300 -> 700
-      const storageRate = 0.05;
-      const outGB = (Math.floor(Math.random() * 4) + 1) * 50; // 50 -> 200
-      const outRate = 0.08;
-      return { vms, hours, vmRate, storageGB, storageRate, outGB, outRate };
-    },
-    render(d) {
-      const totalHours = d.vms * d.hours;
-      const vmCost = (totalHours * d.vmRate).toFixed(2);
-      const storageCost = (d.storageGB * d.storageRate).toFixed(2);
-      const outCost = (d.outGB * d.outRate).toFixed(2);
-      const totalCost = (parseFloat(vmCost) + parseFloat(storageCost) + parseFloat(outCost)).toFixed(2);
-
-      const prompt = `Một dịch vụ sử dụng <b>${d.vms} máy ảo</b>, mỗi máy chạy <b>${d.hours} giờ/tháng</b> với đơn giá <b>${d.vmRate.toFixed(2)} USD/giờ</b>; lưu trữ <b>${d.storageGB} GB</b> giá <b>${d.storageRate.toFixed(2)} USD/GB-tháng</b>; truyền dữ liệu ra ngoài <b>${d.outGB} GB</b> giá <b>${d.outRate.toFixed(2)} USD/GB</b>.`;
-      
-      const steps = [
-        { title: "1. Tính tổng số giờ sử dụng máy ảo trong tháng:", formula: `${d.vms} × ${d.hours}`, result: `${totalHours} giờ-máy` },
-        { title: "2. Tính chi phí sử dụng máy ảo trong tháng:", formula: `${totalHours} × ${d.vmRate.toFixed(2)}`, result: `${vmCost} USD` },
-        { title: "3. Tính riêng chi phí lưu trữ và chi phí truyền dữ liệu:", formula: `Lưu trữ: ${d.storageGB} × ${d.storageRate.toFixed(2)} = ${storageCost} USD | Truyền: ${d.outGB} × ${d.outRate.toFixed(2)} = ${outCost} USD`, result: `${storageCost} USD & ${outCost} USD` },
-        { title: "4. Tính tổng chi phí dịch vụ trong tháng:", formula: `${vmCost} + ${storageCost} + ${outCost}`, result: `${totalCost} USD/tháng` }
-      ];
-      return { prompt, steps };
-    }
-  },
-  "3.5": {
-    defaultData: { totalMin: 300, pPct: 75, cores: 4 },
-    randomize() {
-      const times = [240, 300, 360, 480];
-      const pList = [60, 75, 80];
-      const cList = [2, 4, 8];
-      return {
-        totalMin: times[Math.floor(Math.random() * times.length)],
-        pPct: pList[Math.floor(Math.random() * pList.length)],
-        cores: cList[Math.floor(Math.random() * cList.length)]
-      };
-    },
-    render(d) {
-      const P = d.pPct / 100;
-      const S = parseFloat((1 - P).toFixed(2));
-      const speedup = (1 / (S + (P / d.cores))).toFixed(3);
-      const newTime = (d.totalMin / speedup).toFixed(2);
-      const savedTime = (d.totalMin - newTime).toFixed(2);
-
-      const prompt = `Một tác vụ mất <b>${d.totalMin} phút</b> khi chạy tuần tự; <b>${d.pPct}%</b> công việc có thể song song hóa. Hệ thống sử dụng <b>${d.cores} bộ xử lý</b>; bỏ qua chi phí đồng bộ. Áp dụng định luật Amdahl.`;
-      const steps = [
-        { title: "1. Xác định tỷ lệ công việc tuần tự và có thể song song hóa:", formula: `P = ${d.pPct}% = ${P}; S = 1 - P = 1 - ${P}`, result: `S = ${S}` },
-        { title: "2. Viết công thức Amdahl và thay số:", formula: `Speedup = 1 / (S + P/N) = 1 / (${S} + ${P}/${d.cores})`, result: `Speedup = 1 / (${S} + ${(P/d.cores).toFixed(4)})` },
-        { title: "3. Tính hệ số tăng tốc của tác vụ:", formula: `Speedup = 1 / ${(S + P/d.cores).toFixed(4)}`, result: `≈ ${speedup} lần` },
-        { title: "4. Tính thời gian thực hiện mới và thời gian tiết kiệm:", formula: `Thời gian mới = ${d.totalMin} / ${speedup} = ${newTime} phút | Tiết kiệm = ${d.totalMin} - ${newTime}`, result: `Tiết kiệm ${savedTime} phút` }
-      ];
-      return { prompt, steps };
-    }
-  },
-  "3.6": {
-    defaultData: { totalRAM: 48, baseRAM: 8, totalCPU: 20, vmRAM: 5, vmCPU: 4 },
-    randomize() {
-      const totalRAM = [32, 48, 64][Math.floor(Math.random() * 3)];
-      const baseRAM = [4, 8][Math.floor(Math.random() * 2)];
-      const totalCPU = [16, 20, 24, 32][Math.floor(Math.random() * 4)];
-      const vmRAM = [4, 5, 8][Math.floor(Math.random() * 3)];
-      const vmCPU = [2, 4][Math.floor(Math.random() * 2)];
-      return { totalRAM, baseRAM, totalCPU, vmRAM, vmCPU };
-    },
-    render(d) {
-      const ramLeft = d.totalRAM - d.baseRAM;
-      const vmByRAM = Math.floor(ramLeft / d.vmRAM);
-      const vmByCPU = Math.floor(d.totalCPU / d.vmCPU);
-      const finalVM = Math.min(vmByRAM, vmByCPU);
-      const bottleneck = vmByRAM < vmByCPU ? "RAM" : (vmByRAM > vmByCPU ? "CPU" : "Cả RAM và CPU");
-
-      const prompt = `Máy chủ vật lý có <b>${d.totalRAM} GB RAM</b>, dành <b>${d.baseRAM} GB</b> cho hệ thống nền; tổng tài nguyên CPU cấp được là <b>${d.totalCPU} vCPU</b>. Mỗi máy ảo cần <b>${d.vmRAM} GB RAM</b> và <b>${d.vmCPU} vCPU</b>. Không cấp phát vượt mức.`;
-      const steps = [
-        { title: "1. Tính lượng RAM còn lại dành cho máy ảo:", formula: `${d.totalRAM} - ${d.baseRAM}`, result: `${ramLeft} GB` },
-        { title: "2. Tính số máy ảo tối đa theo giới hạn RAM:", formula: `floor(${ramLeft} ÷ ${d.vmRAM})`, result: `${vmByRAM} máy ảo` },
-        { title: "3. Tính số máy ảo tối đa theo giới hạn CPU:", formula: `floor(${d.totalCPU} ÷ ${d.vmCPU})`, result: `${vmByCPU} máy ảo` },
-        { title: "4. Xác định số máy ảo tối đa có thể triển khai và tài nguyên gây giới hạn:", formula: `min(${vmByRAM}, ${vmByCPU})`, result: `${finalVM} máy ảo (Tài nguyên gây giới hạn: ${bottleneck})` }
-      ];
-      return { prompt, steps };
-    }
-  },
-  "3.10": {
-    defaultData: { sizeGB: 80, speedMbps: 200, effPct: 75 },
-    randomize() {
-      const sizeGB = [50, 80, 100, 120][Math.floor(Math.random() * 4)];
-      const speedMbps = [100, 200, 300][Math.floor(Math.random() * 3)];
-      const effPct = [70, 75, 80][Math.floor(Math.random() * 3)];
-      return { sizeGB, speedMbps, effPct };
-    },
-    render(d) {
-      const realSpeed = d.speedMbps * (d.effPct / 100);
-      const sizeGbit = d.sizeGB * 8;
-      const sizeMbit = sizeGbit * 1000;
-      const sec = (sizeMbit / realSpeed).toFixed(2);
-      const min = (sec / 60).toFixed(2);
-      const hoursPart = Math.floor(min / 60);
-      const minPart = Math.round(min % 60);
-
-      const prompt = `Cần truyền <b>${d.sizeGB} GB</b> dữ liệu qua đường truyền <b>${d.speedMbps} Mbps</b>, hiệu suất thực tế <b>${d.effPct}%</b>. Quy ước 1 GB = 10⁹ byte, 1 Mbps = 10⁶ bit/giây; bỏ qua các yếu tố khác.`;
-      const steps = [
-        { title: "1. Tính tốc độ truyền thực tế tính bằng Mbps:", formula: `${d.speedMbps} × ${d.effPct}%`, result: `${realSpeed} Mbps` },
-        { title: "2. Đổi dung lượng ${d.sizeGB} GB sang Mbit:", formula: `${d.sizeGB} GB × 8 = ${sizeGbit} Gbit = ${sizeMbit} Mbit`, result: `${sizeMbit} Mbit` },
-        { title: "3. Tính thời gian truyền dữ liệu tính bằng giây:", formula: `${sizeMbit} ÷ ${realSpeed}`, result: `≈ ${sec} giây` },
-        { title: "4. Đổi thời gian truyền sang phút và giờ-phút:", formula: `${sec} ÷ 60 ≈ ${min} phút`, result: `≈ ${hoursPart > 0 ? hoursPart + ' giờ ' : ''}${minPart} phút` }
-      ];
-      return { prompt, steps };
-    }
-  },
-  "3.14": {
-    defaultData: { backupHour: 1, crashHour: 13, rpoLimit: 6, rtoLimit: 3 },
-    randomize() {
-      const backupHour = Math.floor(Math.random() * 3); // 0, 1, 2h
-      const crashHour = Math.floor(Math.random() * 5) + 12; // 12h -> 16h
-      const rpoLimit = [4, 6, 8][Math.floor(Math.random() * 3)];
-      const rtoLimit = [2, 3, 4][Math.floor(Math.random() * 3)];
-      return { backupHour, crashHour, rpoLimit, rtoLimit };
-    },
-    render(d) {
-      const diffHours = d.crashHour - d.backupHour;
-      const isRpoOk = diffHours <= d.rpoLimit;
-      const deadline = d.crashHour + d.rtoLimit;
-
-      const prompt = `Bản sao lưu gần nhất hoàn tất lúc <b>0${d.backupHour}:00</b>; sự cố xảy ra lúc <b>${d.crashHour}:00</b> cùng ngày. Mục tiêu RPO không quá <b>${d.rpoLimit} giờ</b> và RTO là <b>${d.rtoLimit} giờ</b> kể từ khi xảy ra sự cố.`;
-      const steps = [
-        { title: "1. Tính khoảng thời gian từ bản sao lưu gần nhất đến khi xảy ra sự cố:", formula: `${d.crashHour}:00 - 0${d.backupHour}:00`, result: `${diffHours} giờ` },
-        { title: "2. Xác định khoảng dữ liệu có nguy cơ mất nếu khôi phục:", formula: `Từ 0${d.backupHour}:00 đến ${d.crashHour}:00`, result: `Dữ liệu phát sinh trong vòng ${diffHours} giờ` },
-        { title: "3. Đánh giá việc đáp ứng mục tiêu RPO:", formula: `So sánh ${diffHours} giờ với ngưỡng RPO ${d.rpoLimit} giờ`, result: `${isRpoOk ? 'ĐẠT' : 'KHÔNG ĐẠT'} (Vì ${diffHours}h ${isRpoOk ? '≤' : '>'} ${d.rpoLimit}h)` },
-        { title: "4. Xác định thời điểm muộn nhất cần hoàn tất để đạt RTO:", formula: `${d.crashHour}:00 + ${d.rtoLimit} giờ`, result: `${deadline}:00 cùng ngày` }
-      ];
-      return { prompt, steps };
-    }
-  }
-};
-
-let currentMathKey = "3.1";
-let isMathCustom = false;
-
-function loadMathQuestion(useRandom = false) {
-  const engine = MATH_ENGINES[currentMathKey] || MATH_ENGINES["3.1"];
-  const data = useRandom ? engine.randomize() : engine.defaultData;
-  const out = engine.render(data);
-
-  $('mathPromptContent').innerHTML = out.prompt;
-  const box = $('mathStepsContainer');
-  box.innerHTML = '';
-
-  out.steps.forEach((st, idx) => {
-    const card = document.createElement('div');
-    card.className = 'step-card';
-    card.innerHTML = `
-      <div class="step-title">${st.title}</div>
-      <div style="display:flex; gap:10px; margin-top:8px;">
-        <input type="text" class="fc-textarea" style="min-height:auto; height:42px; margin:0;" placeholder="Nhập nhẩm đáp án...">
-        <button type="button" class="check-step-btn" data-step="${idx}">Xem Lời Giải</button>
-      </div>
-      <div class="step-solution hidden" id="sol-step-${idx}">
-        <b>Công thức:</b> ${st.formula}<br>
-        <b>Đáp số chuẩn:</b> ${st.result}
-      </div>
-    `;
-    box.appendChild(card);
-  });
-
-  box.querySelectorAll('.check-step-btn').forEach(b => {
-    b.addEventListener('click', () => {
-      const idx = b.getAttribute('data-step');
-      const sol = $(`sol-step-${idx}`);
-      sol.classList.toggle('hidden');
-      b.textContent = sol.classList.contains('hidden') ? 'Xem Lời Giải' : 'Ẩn Lời Giải';
-    });
-  });
-}
-
-$('mathTypeSelect').addEventListener('change', e => {
-  currentMathKey = e.target.value;
-  loadMathQuestion(false);
-});
-
-$('btnGenNewMath').addEventListener('click', () => loadMathQuestion(true));
-$('btnResetDefaultMath').addEventListener('click', () => loadMathQuestion(false));
-
-// ==================== DỮ LIỆU FLASHCARDS LÝ THUYẾT VẬN DỤNG ====================
-const FLASHCARD_DATA = [
-  {
-    type: "c1",
-    q: "Câu 1.1: Phân tích mối quan hệ giữa mô hình triển khai và mô hình dịch vụ.",
-    sub: "1. Mối quan hệ | 2. Chọn mô hình cho nhu cầu kiểm soát hạ tầng cao | 3. Chọn mô hình cho nhu cầu dùng app hoàn chỉnh",
-    ans: "1. Triển khai quyết định hạ tầng tổ chức thế nào và ai dùng (Public/Private/Hybrid); Dịch vụ quyết định mức quản lý của nhà cung cấp (IaaS/PaaS/SaaS). Hai mô hình kết hợp song song, không loại trừ nhau.\n2. Cần kiểm soát cao: Triển khai chọn Private Cloud; Dịch vụ chọn IaaS (quản lý máy chủ ảo, HĐH, phần mềm).\n3. Dùng app hoàn chỉnh: Chọn SaaS (nhà cung cấp quản lý toàn bộ hệ thống, dùng ngay qua web).",
-    keywords: ["Public, Private, Hybrid", "IaaS, PaaS, SaaS", "kết hợp song song", "Private Cloud", "IaaS", "SaaS"]
-  },
-  {
-    type: "c1",
-    q: "Câu 1.9: Doanh nghiệp xử lý đồng thời nhiều yêu cầu và triển khai trên nhiều máy chủ.",
-    sub: "1. Vai trò kiến trúc song song | 2. Vai trò kiến trúc phân tán | 3. Phối hợp giữa song song & phân tán",
-    ans: "1. Song song: Chia việc xử lý đồng thời trên nhiều đơn vị tính toán để rút ngắn thời gian, đáp ứng tải lớn.\n2. Phân tán: Đặt tài nguyên lên nhiều nút mạng để tránh điểm lỗi đơn (single point of failure) và dễ scale-out.\n3. Phối hợp: Phân tán giúp trải rộng tài nguyên; Song song khai thác từng nút để xử lý đồng thời qua cơ chế giao tiếp mạng.",
-    keywords: ["rút ngắn thời gian", "xử lý đồng thời", "scale-out", "tránh phụ thuộc một máy", "trải rộng tài nguyên"]
-  },
-  {
-    type: "c1",
-    q: "Câu 1.10: Xây dựng nhiều máy chủ logic trên một số ít máy chủ vật lý.",
-    sub: "1. Vai trò của ảo hóa | 2. Đề xuất cách triển khai máy ảo | 3. Quản lý và giám sát",
-    ans: "1. Ảo hóa tạo máy ảo logic chạy độc lập trên 1 máy vật lý, tối ưu công suất phần cứng, tiết kiệm chi phí CapEx.\n2. Cài Hypervisor lên máy chủ vật lý; tạo các VM theo từng dịch vụ; cấp vCPU, RAM, ổ cứng theo nhu cầu thực tế.\n3. Quản lý vòng đời VM (tạo, backup, xóa); giám sát tải CPU/RAM; vá lỗi và bảo vệ tài khoản admin Hypervisor.",
-    keywords: ["Hypervisor", "tối ưu phần cứng", "tách biệt môi trường", "vCPU, RAM", "vòng đời VM", "admin Hypervisor"]
-  },
-  {
-    type: "c2",
-    q: "Câu 2.1: Doanh nghiệp có nhân viên làm việc tại nhiều nơi, truy cập đám mây qua mạng.",
-    sub: "1. Vai trò mạng truy nhập | 2. Yêu cầu kết nối | 3. Ảnh hưởng tới hiệu năng & sử dụng",
-    ans: "1. Mạng truy nhập là cầu nối bắt buộc đưa người dùng gửi yêu cầu và nhận dữ liệu từ đám mây.\n2. Đảm bảo kết nối ổn định, đủ băng thông cho số lượng user; phù hợp vị trí địa lý; duy trì liên tục khi tải tăng cao.\n3. Băng thông thấp hoặc chập chờn làm ứng dụng chậm/tê liệt dù máy chủ đám mây vẫn chạy tốt. Phải tối ưu cả 2 phía.",
-    keywords: ["cầu nối trực tiếp", "băng thông", "độ ổn định", "vị trí địa lý", "nghẽn mạng", "xem xét cả 2 phía"]
-  },
-  {
-    type: "c2",
-    q: "Câu 2.3: Doanh nghiệp phân quyền truy cập thư mục cho các phòng ban.",
-    sub: "1. Tổ chức thư mục | 2. Tổ chức tài khoản/nhóm | 3. Nguyên tắc cấp quyền & kiểm tra",
-    ans: "1. Phân chia thư mục riêng biệt theo từng phòng ban; tạo thư mục Public cho dữ liệu trao đổi chung.\n2. Tạo User Group theo từng phòng ban, gán nhân viên vào Group và cấp quyền theo Group thay vì cá nhân.\n3. Tuân thủ nguyên tắc 'đặc quyền tối thiểu' (least privilege); rà soát quyền định kỳ; dùng tài khoản đại diện kiểm thử truy cập.",
-    keywords: ["cây thư mục", "User Group", "đặc quyền tối thiểu", "rà soát định kỳ", "kiểm thử tài khoản"]
-  },
-  {
-    type: "c2",
-    q: "Câu 2.10: Bảo vệ dữ liệu đám mây khi lưu trữ (at-rest) và khi truyền (in-transit).",
-    sub: "1. Phân biệt 2 trạng thái | 2. Giải pháp mã hóa | 3. Quản lý khóa & lý do kết hợp",
-    ans: "1. At-rest: Dữ liệu nằm yên trên đĩa/backup/database. In-transit: Dữ liệu đang di chuyển trên mạng.\n2. At-rest dùng mã hóa ổ đĩa/tập tin (AES); In-transit dùng giao thức bảo mật TLS/HTTPS, VPN.\n3. Khóa mã hóa phải được lưu an toàn (KMS); kết hợp cả hai tạo lớp bảo vệ khép kín, tránh lộ ở trạm trung gian.",
-    keywords: ["Data-at-rest", "Data-in-transit", "TLS/HTTPS", "mã hóa ổ đĩa", "vòng khép kín", "quản lý khóa"]
-  }
-];
-
-function renderFlashcards(filter = "all") {
-  const box = $('flashcardList');
-  box.innerHTML = '';
-  FLASHCARD_DATA.forEach((fc, idx) => {
-    if (filter !== "all" && fc.type !== filter) return;
-    const card = document.createElement('div');
-    card.className = 'fc-card';
-    card.innerHTML = `
-      <div class="fc-question">${fc.q}</div>
-      <div class="fc-subq">${fc.sub}</div>
-      <textarea class="fc-textarea" placeholder="Tự gõ đáp án tóm tắt của bạn vào đây trước khi đối chiếu..."></textarea>
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <button type="button" class="toggle-answer-btn">👁️ Đối Chiếu Đáp Án & Từ Khóa</button>
-        <span style="font-size:0.85rem; color:var(--ink-muted); font-weight:700;">Nhớ chấm theo Rubric</span>
-      </div>
-      <div class="step-solution hidden" style="margin-top:12px;">
-        <b>Đáp án tham khảo:</b>
-        <p style="white-space:pre-line; margin:6px 0;">${fc.ans}</p>
-        <div style="margin-top:8px; font-weight:800; font-size:0.85rem; color:var(--ink);">CÁC TỪ KHÓA BẮT BUỘC PHẢI CÓ ĐỂ ĐẠT ĐIỂM TỐI ĐA:</div>
-        <div class="key-tags">
-          ${fc.keywords.map(k => `<span class="key-tag">✓ ${k}</span>`).join('')}
-        </div>
-      </div>
-    `;
-    box.appendChild(card);
-  });
-
-  box.querySelectorAll('.toggle-answer-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const sol = btn.parentElement.nextElementSibling;
-      sol.classList.toggle('hidden');
-      btn.textContent = sol.classList.contains('hidden') ? '👁️ Đối Chiếu Đáp Án & Từ Khóa' : '🙈 Ẩn Đáp Án';
-    });
-  });
-}
-
-document.querySelectorAll('.filter-fc-btn').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.filter-fc-btn').forEach(btn => btn.classList.remove('btn-primary'));
-    b.classList.add('btn-primary');
-    renderFlashcards(b.getAttribute('data-fc'));
-  });
-});
-
 // POPUP & THEME
 $('secretTipBtn').onclick = () => $('tipModal').classList.remove('hidden');
 $('closeTipBtn').onclick = () => $('tipModal').classList.add('hidden');
 $('themeToggle').onclick = () => {
   document.body.classList.toggle('monochrome');
-  $('themeToggle').textContent = document.body.classList.contains('monochrome') ? 'Chuyển: Giao diện Chuẩn' : 'Chuyển: Trắng / Đen';
+  $('themeToggle').textContent = document.body.classList.contains('monochrome') ? 'Giao diện Chuẩn' : 'Trắng / Đen';
 };
 $('printBtn').onclick = () => window.print();
 
-// Khởi chạy mặc định
-loadMathQuestion(false);
-renderFlashcards("all");
+// KHỞI TẠO LẦN ĐẦU
+rollNewExam();
+renderTheoryBank("all");
+renderSingleMath("3.1", true);
 </script>
 </body>
 </html>
